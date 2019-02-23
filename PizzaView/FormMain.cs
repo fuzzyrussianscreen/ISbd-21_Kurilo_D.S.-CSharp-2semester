@@ -78,7 +78,7 @@ namespace PizzaView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.TakeOrderInWork(new IndentBindingModel { Id = id });
+                    service.TakeIndentInWork(new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -95,7 +95,7 @@ namespace PizzaView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.FinishOrder(new IndentBindingModel { Id = id });
+                    service.FinishIndent(new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -112,7 +112,7 @@ namespace PizzaView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.PayOrder(new IndentBindingModel { Id = id });
+                    service.PayIndent(new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)

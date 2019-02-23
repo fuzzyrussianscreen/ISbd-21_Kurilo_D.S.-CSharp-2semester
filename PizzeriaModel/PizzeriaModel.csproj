@@ -47,6 +47,8 @@
     <Compile Include="Pizza.cs" />
     <Compile Include="PizzaIngredient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storage.cs" />
+    <Compile Include="StorageIngredient.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -19,53 +19,28 @@ namespace PizzeriaServiceImplement.Implementations
         }
         public List<IndentViewModel> GetList()
         {
-            List<IndentViewModel> result = new List<IndentViewModel>();
-            for (int i = 0; i < source.Indents.Count; ++i)
-            {
-                string clientFIO = string.Empty;
-                for (int j = 0; j < source.Customers.Count; ++j)
+            List<IndentViewModel> result = source.Indents
+                .Select(rec => new IndentViewModel
                 {
-                    if (source.Customers[j].Id == source.Indents[i].CustomerId)
-                    {
-                        clientFIO = source.Customers[j].CustomerFIO;
-                        break;
-                    }
-                }
-                string productName = string.Empty;
-                for (int j = 0; j < source.Pizzas.Count; ++j)
-                {
-                    if (source.Pizzas[j].Id == source.Indents[i].PizzaId)
-                    {
-                        productName = source.Pizzas[j].PizzaName;
-                        break;
-                    }
-                }
-                result.Add(new IndentViewModel
-                {
-                    Id = source.Indents[i].Id,
-                    CustomerId = source.Indents[i].CustomerId,
-                    CustomerFIO = clientFIO,
-                    PizzaId = source.Indents[i].PizzaId,
-                    PizzaName = productName,
-                    Count = source.Indents[i].Count,
-                    Sum = source.Indents[i].Sum,
-                    DateCreate = source.Indents[i].DateCreate.ToLongDateString(),
-                    DateImplement = source.Indents[i].DateImplement?.ToLongDateString(),
-                    Status = source.Indents[i].Status.ToString()
-                });
-            }
+                    Id = rec.Id,
+                    CustomerId = rec.CustomerId,
+                    PizzaId = rec.PizzaId,
+                    DateCreate = rec.DateCreate.ToLongDateString(),
+                    DateImplement = rec.DateImplement?.ToLongDateString(),
+                    Status = rec.Status.ToString(),
+                    Count = rec.Count,
+                    Sum = rec.Sum,
+                    CustomerFIO = source.Customers.FirstOrDefault(recC => recC.Id ==
+                    rec.CustomerId)?.CustomerFIO,
+                    PizzaName = source.Pizzas.FirstOrDefault(recP => recP.Id ==
+                   rec.PizzaId)?.PizzaName,
+                })
+                .ToList();
             return result;
         }
         public void CreateIndent(IndentBindingModel model)
         {
-            int maxId = 0;
-            for (int i = 0; i < source.Indents.Count; ++i)
-            {
-                if (source.Indents[i].Id > maxId)
-                {
-                    maxId = source.Customers[i].Id;
-                }
-            }
+            int maxId = source.Indents.Count > 0 ? source.Indents.Max(rec => rec.Id) : 0;
             source.Indents.Add(new Indent
             {
                 Id = maxId + 1,
@@ -77,69 +52,67 @@ namespace PizzeriaServiceImplement.Implementations
                 Status = IndentStatus.Принят
             });
         }
-        public void TakeOrderInWork(IndentBindingModel model)
+        public void TakeIndentInWork(IndentBindingModel model)
         {
-            int index = -1;
-            for (int i = 0; i < source.Indents.Count; ++i)
-            {
-                if (source.Indents[i].Id == model.Id)
-                {
-                    index = i;
-                    break;
-                }
-            }
-            if (index == -1)
+            Indent element = source.Indents.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            if (source.Indents[index].Status != IndentStatus.Принят)
+            if (element.Status != IndentStatus.Принят)
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            source.Indents[index].DateImplement = DateTime.Now;
-            source.Indents[index].Status = IndentStatus.Выполняется;
+            element.DateImplement = DateTime.Now;
+            element.Status = IndentStatus.Выполняется;
         }
-        public void FinishOrder(IndentBindingModel model)
+        public void FinishIndent(IndentBindingModel model)
         {
-            int index = -1;
-            for (int i = 0; i < source.Indents.Count; ++i)
-            {
-                if (source.Indents[i].Id == model.Id)
-                {
-                    index = i;
-                    break;
-                }
-            }
-            if (index == -1)
+            Indent element = source.Indents.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            if (source.Indents[index].Status != IndentStatus.Выполняется)
+            if (element.Status != IndentStatus.Выполняется)
             {
                 throw new Exception("Заказ не в статусе \"Выполняется\"");
             }
-            source.Indents[index].Status = IndentStatus.Готов;
+            element.Status = IndentStatus.Готов;
         }
-        public void PayOrder(IndentBindingModel model)
+        public void PayIndent(IndentBindingModel model)
         {
-            int index = -1;
-            for (int i = 0; i < source.Indents.Count; ++i)
-            {
-                if (source.Indents[i].Id == model.Id)
-                {
-                    index = i;
-                    break;
-                }
-            }
-            if (index == -1)
+            Indent element = source.Indents.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            if (source.Indents[index].Status != IndentStatus.Готов)
+            if (element.Status != IndentStatus.Готов)
             {
                 throw new Exception("Заказ не в статусе \"Готов\"");
             }
-            source.Indents[index].Status = IndentStatus.Оплачен;
+            element.Status = IndentStatus.Оплачен;
+        }
+
+        public void PutComponentOnStorage(StorageIngredientBindingModel model)
+        {
+            StorageIngredient element = source.StorageIngredients.FirstOrDefault(rec =>
+           rec.StorageId == model.StorageId && rec.IngredientId == model.IngredientId);
+            if (element != null)
+            {
+                element.Count += model.Count;
+            }
+            else
+            {
+                int maxId = source.StorageIngredients.Count > 0 ?
+               source.StorageIngredients.Max(rec => rec.Id) : 0;
+                source.StorageIngredients.Add(new StorageIngredient
+                {
+                    Id = ++maxId,
+                    StorageId = model.StorageId,
+                    IngredientId = model.IngredientId,
+                    Count = model.Count
+                });
+            }
         }
     }
 }
