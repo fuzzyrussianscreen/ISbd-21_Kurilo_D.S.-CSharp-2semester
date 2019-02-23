@@ -9,5 +9,8 @@
     <Import_RootNamespace>PizzeriaModel</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Client.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Order.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OrderStatus.cs" />
   </ItemGroup>
 </Project>
