@@ -63,6 +63,45 @@ namespace PizzeriaServiceImplement.Implementations
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
+            // смотрим по количеству компонентов на складах
+            var pizzaIngredients = source.PizzaIngredient.Where(rec => rec.PizzaId
+           == element.PizzaId);
+            foreach (var pizzaIngredient in pizzaIngredients)
+            {
+                int countOnStorages = source.StorageIngredients
+                .Where(rec => rec.IngredientId ==
+               pizzaIngredient.IngredientId)
+                .Sum(rec => rec.Count);
+                if (countOnStorages < pizzaIngredient.Count * element.Count)
+                {
+                    var componentName = source.Ingredients.FirstOrDefault(rec => rec.Id ==
+                   pizzaIngredient.IngredientId);
+                    throw new Exception("Не достаточно компонента " +
+                   componentName?.IngredientName + " требуется " + (pizzaIngredient.Count * element.Count) +
+                   ", в наличии " + countOnStorages);
+                }
+            }
+            // списываем
+            foreach (var pizzaIngredient in pizzaIngredients)
+            {
+                int countOnStorages = pizzaIngredient.Count * element.Count;
+                var stockIngredients = source.StorageIngredients.Where(rec => rec.IngredientId
+               == pizzaIngredient.IngredientId);
+                foreach (var stockIngredient in stockIngredients)
+                {
+                    // компонентов на одном слкаде может не хватать
+                    if (stockIngredient.Count >= countOnStorages)
+                    {
+                        stockIngredient.Count -= countOnStorages;
+                        break;
+                    }
+                    else
+                    {
+                        countOnStorages -= stockIngredient.Count;
+                        stockIngredient.Count = 0;
+                    }
+                }
+            }
             element.DateImplement = DateTime.Now;
             element.Status = IndentStatus.Выполняется;
         }
@@ -93,7 +132,7 @@ namespace PizzeriaServiceImplement.Implementations
             element.Status = IndentStatus.Оплачен;
         }
 
-        public void PutComponentOnStorage(StorageIngredientBindingModel model)
+        public void PutIngredientOnStorage(StorageIngredientBindingModel model)
         {
             StorageIngredient element = source.StorageIngredients.FirstOrDefault(rec =>
            rec.StorageId == model.StorageId && rec.IngredientId == model.IngredientId);

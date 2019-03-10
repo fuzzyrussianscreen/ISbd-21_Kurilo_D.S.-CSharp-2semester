@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PizzeriaServiceImplement.Implementations
 {
-    class StorageServiceList : IStorageService
+    public class StorageServiceList : IStorageService
     {
         private DataListSingleton source;
 

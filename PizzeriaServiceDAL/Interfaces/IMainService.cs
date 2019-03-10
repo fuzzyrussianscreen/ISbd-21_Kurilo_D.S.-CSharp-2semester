@@ -15,6 +15,6 @@ namespace PizzeriaServiceDAL.Interfaces
         void TakeIndentInWork(IndentBindingModel model);
         void FinishIndent(IndentBindingModel model);
         void PayIndent(IndentBindingModel model);
-        void PutComponentOnStorage(StorageIngredientBindingModel model);
+        void PutIngredientOnStorage(StorageIngredientBindingModel model);
     }
 }

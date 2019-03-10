@@ -65,12 +65,18 @@ namespace PizzaView
             var form = Container.Resolve<FormPizzas>();
             form.ShowDialog();
         }
+        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormStorages>();
+            form.ShowDialog();
+        }
         private void buttonCreateIndent_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormCreateIndent>();
             form.ShowDialog();
             LoadData();
         }
+
         private void buttonTakeIndentInWork_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -126,6 +132,12 @@ namespace PizzaView
         private void buttonRef_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void пополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormPutOnStorage>();
+            form.ShowDialog();
         }
     }
 }
