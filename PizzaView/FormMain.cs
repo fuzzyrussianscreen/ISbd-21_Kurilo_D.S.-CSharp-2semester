@@ -65,12 +65,18 @@ namespace PizzaView
             var form = Container.Resolve<FormPizzas>();
             form.ShowDialog();
         }
+        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormStorages>();
+            form.ShowDialog();
+        }
         private void buttonCreateIndent_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormCreateIndent>();
             form.ShowDialog();
             LoadData();
         }
+
         private void buttonTakeIndentInWork_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -78,7 +84,7 @@ namespace PizzaView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.TakeOrderInWork(new IndentBindingModel { Id = id });
+                    service.TakeIndentInWork(new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -95,7 +101,7 @@ namespace PizzaView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.FinishOrder(new IndentBindingModel { Id = id });
+                    service.FinishIndent(new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -112,7 +118,7 @@ namespace PizzaView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.PayOrder(new IndentBindingModel { Id = id });
+                    service.PayIndent(new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -126,6 +132,12 @@ namespace PizzaView
         private void buttonRef_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void пополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormPutOnStorage>();
+            form.ShowDialog();
         }
     }
 }
