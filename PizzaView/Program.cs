@@ -1,7 +1,9 @@
 ﻿using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceImplement.Implementations;
+using PizzeriaServiceImplementDataBase;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,6 +30,8 @@ namespace PizzaView
         public static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
+            currentContainer.RegisterType<DbContext, PizzeriaDbContext>(new
+           HierarchicalLifetimeManager());
             currentContainer.RegisterType<ICustomerService, CustomerServiceList>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IIngredientService, IngredientServiceList>(new
