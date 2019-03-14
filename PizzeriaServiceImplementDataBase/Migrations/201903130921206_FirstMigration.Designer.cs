@@ -13,7 +13,7 @@ namespace PizzeriaServiceImplementDataBase.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201903101505566_FirstMigration"; }
+            get { return "201903130921206_FirstMigration"; }
         }
         
         string IMigrationMetadata.Source

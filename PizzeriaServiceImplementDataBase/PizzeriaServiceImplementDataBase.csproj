@@ -52,15 +52,15 @@
   <ItemGroup>
     <Compile Include="Implementations\IngredientServiceDB.cs" />
     <Compile Include="Implementations\StorageServiceDB.cs" />
+    <Compile Include="Migrations\201903130921206_FirstMigration.cs" />
+    <Compile Include="Migrations\201903130921206_FirstMigration.Designer.cs">
+      <DependentUpon>201903130921206_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PizzeriaDbContext.cs" />
     <Compile Include="Implementations\CustomerServiceDB.cs" />
     <Compile Include="Implementations\MainServiceDB.cs" />
     <Compile Include="Implementations\PizzaServiceDB.cs" />
-    <Compile Include="Migrations\201903101505566_FirstMigration.cs" />
-    <Compile Include="Migrations\201903101505566_FirstMigration.Designer.cs">
-      <DependentUpon>201903101505566_FirstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,11 +75,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="App2.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903101505566_FirstMigration.resx">
-      <DependentUpon>201903101505566_FirstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903130921206_FirstMigration.resx">
+      <DependentUpon>201903130921206_FirstMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

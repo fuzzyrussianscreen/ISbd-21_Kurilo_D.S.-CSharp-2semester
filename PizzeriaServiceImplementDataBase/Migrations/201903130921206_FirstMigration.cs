@@ -79,8 +79,10 @@ namespace PizzeriaServiceImplementDataBase.Migrations
                         Count = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Ingredients", t => t.IngredientId, cascadeDelete: true)
                 .ForeignKey("dbo.Storages", t => t.StorageId, cascadeDelete: true)
-                .Index(t => t.StorageId);
+                .Index(t => t.StorageId)
+                .Index(t => t.IngredientId);
             
             CreateTable(
                 "dbo.Storages",
@@ -95,11 +97,13 @@ namespace PizzeriaServiceImplementDataBase.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.StorageIngredients", "StorageId", "dbo.Storages");
-            DropForeignKey("dbo.Indents", "PizzaId", "dbo.Pizzas");
             DropForeignKey("dbo.PizzaIngredients", "PizzaId", "dbo.Pizzas");
+            DropForeignKey("dbo.StorageIngredients", "StorageId", "dbo.Storages");
+            DropForeignKey("dbo.StorageIngredients", "IngredientId", "dbo.Ingredients");
             DropForeignKey("dbo.PizzaIngredients", "IngredientId", "dbo.Ingredients");
+            DropForeignKey("dbo.Indents", "PizzaId", "dbo.Pizzas");
             DropForeignKey("dbo.Indents", "CustomerId", "dbo.Customers");
+            DropIndex("dbo.StorageIngredients", new[] { "IngredientId" });
             DropIndex("dbo.StorageIngredients", new[] { "StorageId" });
             DropIndex("dbo.PizzaIngredients", new[] { "IngredientId" });
             DropIndex("dbo.PizzaIngredients", new[] { "PizzaId" });
