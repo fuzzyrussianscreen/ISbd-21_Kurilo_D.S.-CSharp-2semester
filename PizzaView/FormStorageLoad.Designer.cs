@@ -86,6 +86,7 @@
             this.Controls.Add(this.button1);
             this.Name = "FormStorageLoad";
             this.Text = "FormStorageLoad";
+            this.Load += new System.EventHandler(this.FormStoragesLoad_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 

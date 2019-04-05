@@ -22,10 +22,11 @@ namespace PizzaView
         private readonly IMainService service;
         private  IReptService reptService;
 
-        public FormMain(IMainService service)
+        public FormMain(IMainService service, IReptService reptService)
         {
             InitializeComponent();
             this.service = service;
+            this.reptService = reptService;
         }
 
         private void LoadData()
