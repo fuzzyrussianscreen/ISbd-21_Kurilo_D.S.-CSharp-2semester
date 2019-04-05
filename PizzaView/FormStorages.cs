@@ -63,7 +63,7 @@ namespace PizzaView
             {
                 var form = Container.Resolve<FormStorage>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                if (form.ShowDialog() == DialogResult.OK)
+                if (form.ShowDialog() != DialogResult.OK)
                 {
                     LoadData();
                 }
