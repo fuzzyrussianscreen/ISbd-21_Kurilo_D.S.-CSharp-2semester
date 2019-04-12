@@ -47,7 +47,7 @@ namespace PizzaView
                     DateFrom = dateTimePickerFrom.Value,
                     DateTo = dateTimePickerTo.Value
                 });
-                ReportDataSource source = new ReportDataSource("DataSetIndents",
+                ReportDataSource source = new ReportDataSource("DataSetIndent",
                dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();

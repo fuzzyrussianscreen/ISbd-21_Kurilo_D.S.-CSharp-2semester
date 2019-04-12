@@ -420,44 +420,14 @@
         <DataSetName>DataSetIndent</DataSetName>
         <Top>4.22487cm</Top>
         <Left>2.4892cm</Left>
-        <Height>3.02683cm</Height>
-        <Width>16.81333cm</Width>
+        <Height>3.02684cm</Height>
+        <Width>16.81334cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Tablix>
-      <Textbox Name="Textbox20">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Итого:</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox20</rd:DefaultName>
-        <Top>7.42809cm</Top>
-        <Left>11.80253cm</Left>
-        <Height>0.91017cm</Height>
-        <Width>2.5cm</Width>
-        <ZIndex>1</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Textbox Name="Textbox22">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
@@ -480,7 +450,7 @@
         <Left>5.30437cm</Left>
         <Height>1.524cm</Height>
         <Width>11.49817cm</Width>
-        <ZIndex>2</ZIndex>
+        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -513,37 +483,7 @@
         <Left>4.10253cm</Left>
         <Height>1.37583cm</Height>
         <Width>12.7cm</Width>
-        <ZIndex>3</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Sum1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Sum(Fields!Sum.Value, "DataSetIndent")</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Sum1</rd:DefaultName>
-        <Top>7.42809cm</Top>
-        <Left>14.30253cm</Left>
-        <Height>0.91017cm</Height>
-        <Width>2.5cm</Width>
-        <ZIndex>4</ZIndex>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
