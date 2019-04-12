@@ -22,7 +22,18 @@ namespace PizzeriaServiceImplementDataBase.Implementations
             List<StorageViewModel> result = context.Storages.Select(rec => new StorageViewModel
             {
                 Id = rec.Id,
-                StorageName = rec.StorageName
+                StorageName = rec.StorageName,
+                StorageIngredients = context.StorageIngredients
+                .Where(recPC => recPC.StorageId == rec.Id)
+                .Select(recPC => new StorageIngredientViewModel
+                {
+                    Id = recPC.Id,
+                    StorageId = recPC.StorageId,
+                    IngredientId = recPC.IngredientId,
+                    IngredientName = recPC.Ingredient.IngredientName,
+                    Count = recPC.Count
+                })
+                .ToList()
             })
             .ToList();
             return result;
@@ -35,7 +46,18 @@ namespace PizzeriaServiceImplementDataBase.Implementations
                 return new StorageViewModel
                 {
                     Id = element.Id,
-                    StorageName = element.StorageName
+                    StorageName = element.StorageName,
+                    StorageIngredients = context.StorageIngredients
+                .Where(recPC => recPC.StorageId == element.Id)
+                .Select(recPC => new StorageIngredientViewModel
+                {
+                    Id = recPC.Id,
+                    StorageId = recPC.StorageId,
+                    IngredientId = recPC.IngredientId,
+                    IngredientName = recPC.Ingredient.IngredientName,
+                    Count = recPC.Count
+                })
+                .ToList()
                 };
             }
             throw new Exception("Элемент не найден");
@@ -45,7 +67,7 @@ namespace PizzeriaServiceImplementDataBase.Implementations
             Storage element = context.Storages.FirstOrDefault(rec => rec.StorageName == model.StorageName);
             if (element != null)
             {
-                throw new Exception("Уже есть клиент с таким ФИО");
+                throw new Exception("Уже есть склад с таким названием");
             }
             context.Storages.Add(new Storage
             {
