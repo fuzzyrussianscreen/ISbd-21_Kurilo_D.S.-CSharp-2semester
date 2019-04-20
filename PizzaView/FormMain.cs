@@ -97,7 +97,7 @@ namespace PizzaView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    APICustomer.PostRequest<IndentBindingModel, bool>("api/Main//FinishIndent", new IndentBindingModel { Id = id });
+                    APICustomer.PostRequest<IndentBindingModel, bool>("api/Main/FinishIndent", new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -114,7 +114,7 @@ namespace PizzaView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    APICustomer.PostRequest<IndentBindingModel, bool>("api/Main//PayIndent", new IndentBindingModel { Id = id });
+                    APICustomer.PostRequest<IndentBindingModel, bool>("api/Main/PayIndent", new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -146,7 +146,7 @@ namespace PizzaView
             {
                 try
                 {
-                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Main//SavePizzaIndent", new ReptBindingModel
+                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Main/SavePizzaIndent", new ReptBindingModel
                     {
                         FileName = sfd.FileName
                     });

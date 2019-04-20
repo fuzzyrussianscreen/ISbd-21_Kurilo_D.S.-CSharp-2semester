@@ -25,7 +25,7 @@ namespace PizzaView
         {
             try
             {
-                List<StoragesLoadViewModel> dict = APICustomer.GetRequest<List<StoragesLoadViewModel>>("api/Rept/GetStoragesLoad");
+                List<StoragesLoadViewModel> dict = APICustomer.GetRequest<List<StoragesLoadViewModel>>("api/Main/GetStoragesLoad");
                 if (dict != null)
                 {
                     dataGridView.Rows.Clear();
@@ -57,7 +57,7 @@ namespace PizzaView
             {
                 try
                 {
-                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Rept/SaveStoragesLoad", new ReptBindingModel
+                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Main/SaveStoragesLoad", new ReptBindingModel
                     {
                         FileName = sfd.FileName
                     });
