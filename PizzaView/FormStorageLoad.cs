@@ -8,27 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 using PizzeriaServiceDAL.BindingModel;
+using PizzeriaServiceDAL.ViewModel;
+using PizzaView.API;
 
 namespace PizzaView
 {
     public partial class FormStorageLoad : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IReptService service;
 
-        public FormStorageLoad(IReptService service)
+        public FormStorageLoad()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void FormStoragesLoad_Load(object sender, EventArgs e)
         {
             try
             {
-                var dict = service.GetStoragesLoad();
+                List<StoragesLoadViewModel> dict = APICustomer.GetRequest<List<StoragesLoadViewModel>>("api/Rept/GetStoragesLoad");
                 if (dict != null)
                 {
                     dataGridView.Rows.Clear();
@@ -60,7 +57,7 @@ namespace PizzaView
             {
                 try
                 {
-                    service.SaveStoragesLoad(new ReptBindingModel
+                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Rept/SaveStoragesLoad", new ReptBindingModel
                     {
                         FileName = sfd.FileName
                     });

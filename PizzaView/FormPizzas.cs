@@ -1,4 +1,6 @@
-﻿using PizzeriaServiceDAL.Interfaces;
+﻿using PizzaView.API;
+using PizzeriaServiceDAL.BindingModel;
+using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -9,20 +11,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace PizzaView
 {
     public partial class FormPizzas : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IPizzaService service;
-
-        public FormPizzas(IPizzaService service)
+       
+        public FormPizzas()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormPizzas_Load(object sender, EventArgs e)
@@ -34,7 +31,7 @@ namespace PizzaView
         {
             try
             {
-                List<PizzaViewModel> list = service.GetList();
+                List<PizzaViewModel> list = APICustomer.GetRequest<List<PizzaViewModel>>("api/Pizza/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -51,7 +48,7 @@ namespace PizzaView
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormPizza>();
+            var form = new FormPizza();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -61,7 +58,7 @@ namespace PizzaView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormPizza>();
+                var form = new FormPizza();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -79,7 +76,7 @@ namespace PizzaView
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        service.DelElement(id);
+                        APICustomer.PostRequest<PizzaBindingModel, bool>("api/Pizza/DelElement", new PizzaBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
