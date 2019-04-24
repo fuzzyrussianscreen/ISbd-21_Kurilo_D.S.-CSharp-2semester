@@ -14,7 +14,7 @@ namespace PizzeriaServiceImplementDataBase.Migrations
         public override void Down()
         {
             RenameIndex(table: "dbo.Indents", name: "IX_PerformerId", newName: "IX_Performer1Id");
-            RenameColumn(table: "dbo.Indents", name: "PerformerId", newName: "Performer1Id");
+            RenameColumn(table: "dbo.Indents", name: "PerformerId", newName: "Performer1Id");смсм
         }
     }
 }
