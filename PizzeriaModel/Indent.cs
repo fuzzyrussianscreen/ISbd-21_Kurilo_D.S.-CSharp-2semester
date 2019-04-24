@@ -8,6 +8,7 @@ namespace PizzeriaModel
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
+        public int? PerformerId { get; set; }
         public int PizzaId { get; set; }
         public int Count { get; set; }
         public decimal Sum { get; set; }
@@ -17,5 +18,6 @@ namespace PizzeriaModel
 
         public virtual Customer Customer { get; set; }
         public virtual Pizza Pizza { get; set; }
+        public virtual Performer Performer { get; set; }
     }
 }

@@ -18,5 +18,7 @@ namespace PizzeriaServiceDAL.BindingModel
         public int Count { get; set; }
         [DataMember]
         public decimal Sum { get; set; }
+        [DataMember]
+        public int PerformerId { get; set; }
     }
 }

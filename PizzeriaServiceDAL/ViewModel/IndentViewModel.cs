@@ -8,6 +8,8 @@ namespace PizzeriaServiceDAL.ViewModel
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
+        public int PerformerId { get; set; }
+        public string PerformerName { get; set; }
         public string CustomerFIO { get; set; }
         public int PizzaId { get; set; }
         public string PizzaName { get; set; }
