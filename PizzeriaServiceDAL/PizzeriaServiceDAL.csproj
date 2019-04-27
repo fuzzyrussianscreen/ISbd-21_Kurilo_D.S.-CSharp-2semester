@@ -44,6 +44,7 @@
     <Compile Include="BindingModel\CustomerBindingModel.cs" />
     <Compile Include="BindingModel\IndentBindingModel.cs" />
     <Compile Include="BindingModel\IngredientBindingModel.cs" />
+    <Compile Include="BindingModel\LetterInfoBindingModel.cs" />
     <Compile Include="BindingModel\PerformerBindingModel.cs" />
     <Compile Include="BindingModel\PizzaIngredientBindingModel.cs" />
     <Compile Include="BindingModel\PizzaBindingModel.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="BindingModel\StorageIngredientBindingModel.cs" />
     <Compile Include="Interfaces\ICustomerService.cs" />
     <Compile Include="Interfaces\IIngredientService.cs" />
+    <Compile Include="Interfaces\ILetterInfoService.cs" />
     <Compile Include="Interfaces\IMainService.cs" />
     <Compile Include="Interfaces\IPizzaService.cs" />
     <Compile Include="Interfaces\IPerformerService.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\IndentViewModel.cs" />
     <Compile Include="ViewModel\IngredientViewModel.cs" />
+    <Compile Include="ViewModel\LetterInfoViewModel.cs" />
     <Compile Include="ViewModel\PerformerViewModel.cs" />
     <Compile Include="ViewModel\PizzaViewModel.cs" />
     <Compile Include="ViewModel\PizzaIngredientViewModel.cs" />

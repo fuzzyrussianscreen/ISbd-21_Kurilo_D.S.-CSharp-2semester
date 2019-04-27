@@ -15,5 +15,8 @@ namespace PizzeriaModel
 
         [ForeignKey("CustomerId")]
         public virtual List<Indent> Indents { get; set; }
+
+        [ForeignKey("CustomerId")]
+        public virtual List<LetterInfo> LetterInfos { get; set; }
     }
 }
