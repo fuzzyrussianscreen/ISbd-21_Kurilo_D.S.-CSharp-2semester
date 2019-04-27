@@ -50,6 +50,7 @@ namespace PizzeriaRestApi.Controllers
         public void DelElement(PerformerBindingModel model)
         {
             _service.DelElement(model.Id);
-        }
+        }
+
     }
 }

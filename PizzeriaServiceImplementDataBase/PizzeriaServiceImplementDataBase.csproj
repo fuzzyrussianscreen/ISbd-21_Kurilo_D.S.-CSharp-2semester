@@ -68,17 +68,9 @@
     <Compile Include="Implementations\PerformerServiceDB.cs" />
     <Compile Include="Implementations\ReptServiceDB.cs" />
     <Compile Include="Implementations\StorageServiceDB.cs" />
-    <Compile Include="Migrations\201903230837424_FirstMigration.cs" />
-    <Compile Include="Migrations\201903230837424_FirstMigration.Designer.cs">
-      <DependentUpon>201903230837424_FirstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904200752248_lab5-1.cs" />
-    <Compile Include="Migrations\201904200752248_lab5-1.Designer.cs">
-      <DependentUpon>201904200752248_lab5-1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904200942284_lab6-1.cs" />
-    <Compile Include="Migrations\201904200942284_lab6-1.Designer.cs">
-      <DependentUpon>201904200942284_lab6-1.cs</DependentUpon>
+    <Compile Include="Migrations\201904261704154_First.cs" />
+    <Compile Include="Migrations\201904261704154_First.Designer.cs">
+      <DependentUpon>201904261704154_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PizzeriaDbContext.cs" />
@@ -108,14 +100,8 @@
     <None Include="Properties\TIMCYR.TTF" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903230837424_FirstMigration.resx">
-      <DependentUpon>201903230837424_FirstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904200752248_lab5-1.resx">
-      <DependentUpon>201904200752248_lab5-1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904200942284_lab6-1.resx">
-      <DependentUpon>201904200942284_lab6-1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904261704154_First.resx">
+      <DependentUpon>201904261704154_First.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

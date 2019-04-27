@@ -12,24 +12,24 @@ namespace PizzeriaRestApi.Services
     {
         private readonly IMainService _service;
         private readonly IPerformerService _servicePerformer;
-        private readonly int _implementerId;
+        private readonly int _performerId;
         private readonly int _orderId;
         // семафор
         static Semaphore _sem = new Semaphore(3, 3);
         Thread myThread;
         public WorkPerformer(IMainService service, IPerformerService
-       servicePerformer, int implementerId, int orderId)
+       servicePerformer, int performerId, int orderId)
         {
             _service = service;
             _servicePerformer = servicePerformer;
-            _implementerId = implementerId;
+            _performerId = performerId;
             _orderId = orderId;
             try
             {
                 _service.TakeIndentInWork(new IndentBindingModel
                 {
                     Id = _orderId,
-                    PerformerId = _implementerId
+                    PerformerId = _performerId
                 });
             }
             catch (Exception ex)

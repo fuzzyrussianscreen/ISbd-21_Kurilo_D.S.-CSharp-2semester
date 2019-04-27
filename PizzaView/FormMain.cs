@@ -1,4 +1,5 @@
 ﻿using PizzaView.API;
+using PizzeriaRestApi.Services;
 using PizzeriaServiceDAL.BindingModel;
 using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceDAL.ViewModel;
@@ -34,10 +35,10 @@ namespace PizzaView
                     dataGridView.Columns[1].Visible = false;
                     dataGridView.Columns[3].Visible = false;
                     dataGridView.Columns[5].Visible = false;
+                    //dataGridView.Columns[10].Visible = false;
                     dataGridView.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
                     dataGridView.Columns[9].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-                    dataGridView.Columns[1].AutoSizeMode =
-                    DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
@@ -146,7 +147,7 @@ namespace PizzaView
             {
                 try
                 {
-                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Main/SavePizzaIndent", new ReptBindingModel
+                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Rept/SavePizzaIndent", new ReptBindingModel
                     {
                         FileName = sfd.FileName
                     });
@@ -170,6 +171,29 @@ namespace PizzaView
         {
             var form = new FormCustomerIndent();
             form.ShowDialog();
+        }
+
+        private void сотрудникиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormPerformers();
+            form.ShowDialog();
+        }
+        //private readonly IMainService _service;
+        //private readonly IPerformerService _servicePerformer;
+
+        private void запускРаботToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                APICustomer.PostRequest<int?, bool>("api/Main/StartWork", null);
+                MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+               MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+            }
         }
     }
 }

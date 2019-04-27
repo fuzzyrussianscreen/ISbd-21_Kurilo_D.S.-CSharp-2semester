@@ -64,6 +64,7 @@ namespace PizzeriaRestApi.Controllers
                 }
                 new WorkPerformer(_service, _servicePerformer, impl.Id, order.Id);
             }
+            orders = _service.GetFreeIndents();
         }
     }
 }

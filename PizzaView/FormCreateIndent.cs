@@ -98,7 +98,7 @@ namespace PizzaView
             try
             {
                 APICustomer.PostRequest<IndentBindingModel,
-                bool>("api/Main/AddElement", new IndentBindingModel
+                bool>("api/Main/CreateIndent", new IndentBindingModel
                 {
                         CustomerId = Convert.ToInt32(comboBoxCustomer.SelectedValue),
                     PizzaId = Convert.ToInt32(comboBoxPizza.SelectedValue),
