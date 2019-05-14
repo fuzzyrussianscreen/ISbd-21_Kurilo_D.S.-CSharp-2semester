@@ -173,6 +173,7 @@
     <Compile Include="FormStorageLoad.Designer.cs">
       <DependentUpon>FormStorageLoad.cs</DependentUpon>
     </Compile>
+    <Compile Include="LetterCustomer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FormStorage.cs">
