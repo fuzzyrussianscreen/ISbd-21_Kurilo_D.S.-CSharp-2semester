@@ -35,7 +35,7 @@ namespace PizzaView
                     dataGridView.Columns[1].Visible = false;
                     dataGridView.Columns[3].Visible = false;
                     dataGridView.Columns[5].Visible = false;
-                    //dataGridView.Columns[10].Visible = false;
+                    dataGridView.Columns[10].Visible = false;
                     dataGridView.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
                     dataGridView.Columns[9].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
                     dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -178,8 +178,7 @@ namespace PizzaView
             var form = new FormPerformers();
             form.ShowDialog();
         }
-        //private readonly IMainService _service;
-        //private readonly IPerformerService _servicePerformer;
+        
 
         private void запускРаботToolStripMenuItem_Click(object sender, EventArgs e)
         {
