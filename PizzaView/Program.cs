@@ -21,6 +21,7 @@ namespace PizzaView
         static void Main()
         {
             APICustomer.Connect();
+            LetterCustomer.Connect();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());

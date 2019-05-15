@@ -1,4 +1,5 @@
-﻿using PizzeriaServiceDAL.BindingModel;
+﻿using PizzaView.API;
+using PizzeriaServiceDAL.BindingModel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -59,7 +60,7 @@ namespace PizzaView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Letter, "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
             }
         }
@@ -127,7 +128,7 @@ namespace PizzaView
                      !string.IsNullOrEmpty(orderSubjectLetter) &&
                     !string.IsNullOrEmpty(date))
                     {
-                        MdiClient.PostRequest<LetterInfoBindingModel,
+                        APICustomer.PostRequest<LetterInfoBindingModel,
                        bool>("api/LetterInfo/AddElement",
                        new LetterInfoBindingModel
                        {
