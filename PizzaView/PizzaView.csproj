@@ -113,6 +113,12 @@
     <Compile Include="FormIngredient.Designer.cs">
       <DependentUpon>FormIngredient.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormLetters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLetters.Designer.cs">
+      <DependentUpon>FormLetters.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPerformer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +206,9 @@
     <EmbeddedResource Include="FormIngredient.resx">
       <DependentUpon>FormIngredient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormLetters.resx">
+      <DependentUpon>FormLetters.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPerformer.resx">
       <DependentUpon>FormPerformer.cs</DependentUpon>
     </EmbeddedResource>
@@ -260,7 +269,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PizzeriaRestApi\PizzeriaRestApi.csproj">

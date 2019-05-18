@@ -194,5 +194,11 @@ namespace PizzaView
                MessageBoxIcon.Error);
             }
         }
+
+        private void письмаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormLetters();
+            form.ShowDialog();
+        }
     }
 }

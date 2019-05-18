@@ -25,11 +25,14 @@ namespace PizzaView
         {
             string response = null;
             letterClient = new TcpClient();
-            letterClient.Connect("pop.gletter.com", 995);
+            letterClient.Connect("pop.gmail.com", 995);
+
             stream = new SslStream(letterClient.GetStream());
-            stream.AuthenticateAsClient("pop.gletter.com");
+            stream.AuthenticateAsClient("pop.gmail.com");
+
             reader = new StreamReader(stream, Encoding.ASCII);
             writer = new StreamWriter(stream);
+
             response = reader.ReadLine();
             response = SendRequest(reader, writer,
             string.Format("USER {0}", ConfigurationManager.AppSettings["MailLogin"]),
@@ -73,14 +76,14 @@ namespace PizzaView
         /// /// <param name="errorLetter"></param>
         /// <returns></returns>
         private static string SendRequest(StreamReader reader, StreamWriter writer,
-       string message, string errorLetter)
+       string message, string errorMessage)
         {
             writer.WriteLine(message);
             writer.Flush();
             var response = reader.ReadLine();
             if (response.StartsWith("-ERR"))
             {
-                throw new Exception(errorLetter);
+                throw new Exception(errorMessage);
             }
             return response;
         }
