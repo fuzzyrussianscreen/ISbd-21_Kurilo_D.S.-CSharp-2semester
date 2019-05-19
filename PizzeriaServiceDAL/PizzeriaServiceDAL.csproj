@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributies\UsageInterfaceAttribute.cs" />
+    <Compile Include="Attributies\UsageMethodAttribute.cs" />
     <Compile Include="BindingModel\CustomerBindingModel.cs" />
     <Compile Include="BindingModel\IndentBindingModel.cs" />
     <Compile Include="BindingModel\IngredientBindingModel.cs" />
