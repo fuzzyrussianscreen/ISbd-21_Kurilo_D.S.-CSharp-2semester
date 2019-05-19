@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201904261704154_First.Designer.cs">
       <DependentUpon>201904261704154_First.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905181829495_second.cs" />
+    <Compile Include="Migrations\201905181829495_second.Designer.cs">
+      <DependentUpon>201905181829495_second.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PizzeriaDbContext.cs" />
     <Compile Include="Implementations\CustomerServiceDB.cs" />
@@ -104,6 +108,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904261704154_First.resx">
       <DependentUpon>201904261704154_First.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905181829495_second.resx">
+      <DependentUpon>201905181829495_second.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

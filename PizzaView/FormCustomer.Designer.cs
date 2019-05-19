@@ -113,6 +113,7 @@
             this.Controls.Add(this.buttonCancel);
             this.Name = "FormCustomer";
             this.Text = "Клиент";
+            this.Load += new System.EventHandler(this.FormCustomer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

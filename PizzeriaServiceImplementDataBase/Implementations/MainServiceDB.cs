@@ -52,7 +52,7 @@ namespace PizzeriaServiceImplementDataBase.Implementations
         }
         public void CreateIndent(IndentBindingModel model)
         {
-            context.Indents.Add(new Indent
+            var indent = new Indent
             {
                 CustomerId = model.CustomerId,
                 PizzaId = model.PizzaId,
@@ -60,8 +60,12 @@ namespace PizzeriaServiceImplementDataBase.Implementations
                 Count = model.Count,
                 Sum = model.Sum,
                 Status = IndentStatus.Принят
-            });
+            };
+            context.Indents.Add(indent);
             context.SaveChanges();
+            
+            var customer = context.Customers.FirstOrDefault(x => x.Id == model.CustomerId);
+            SendEmail(customer.Post, "Оповещение по заказам", $"Заказ №{indent.Id} от {indent.DateCreate.ToShortDateString()} создан успешно");
         }
         public void TakeIndentInWork(IndentBindingModel model)
         {
@@ -111,6 +115,7 @@ namespace PizzeriaServiceImplementDataBase.Implementations
                     element.DateImplement = DateTime.Now;
                     element.Status = IndentStatus.Выполняется;
                     context.SaveChanges();
+                    SendEmail(element.Customer.Post, "Оповещение по заказам", $"Заказ №{element.Id} от {element.DateCreate.ToShortDateString()} передеан в работу");
                     transaction.Commit();
                 }
                 catch (Exception)
@@ -133,6 +138,7 @@ namespace PizzeriaServiceImplementDataBase.Implementations
             }
             element.Status = IndentStatus.Готов;
             context.SaveChanges();
+            SendEmail(element.Customer.Post, "Оповещение по заказам", $"Заказ №{element.Id} от {element.DateCreate.ToShortDateString()} передан на оплату");
         }
 
         public void PayIndent(IndentBindingModel model)
@@ -148,6 +154,7 @@ namespace PizzeriaServiceImplementDataBase.Implementations
             }
             element.Status = IndentStatus.Оплачен;
             context.SaveChanges();
+            SendEmail(element.Customer.Post, "Оповещение по заказам", $"Заказ №{element.Id} от {element.DateCreate.ToShortDateString()} оплачен успешно");
         }
 
         public void PutIngredientOnStorage(StorageIngredientBindingModel model)
@@ -189,8 +196,9 @@ namespace PizzeriaServiceImplementDataBase.Implementations
             SmtpClient objSmtpClient = null;
             try
             {
+                string login = ConfigurationManager.AppSettings["MailLogin"];
                 objMailMessage.From = new
-               MailAddress(ConfigurationManager.AppSettings["MailLogin"]);
+               MailAddress(login);
                 objMailMessage.To.Add(new MailAddress(mailAddress));
                 objMailMessage.Subject = subject;
                 objMailMessage.Body = text;

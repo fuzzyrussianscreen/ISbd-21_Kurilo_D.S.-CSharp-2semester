@@ -117,7 +117,7 @@ namespace PizzaView
                     {
                         date = response.Substring(6);
                     }
-                    if (response.StartsWith("Letter-ID: "))
+                    if (response.StartsWith("Message-ID: "))
                     {
                         messageId = response.Substring(12);
                     }

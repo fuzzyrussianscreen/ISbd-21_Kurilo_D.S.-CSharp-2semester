@@ -57,12 +57,12 @@ namespace PizzaView
             }
             string fio = textBoxFIO.Text;
             string post = textBoxPost.Text;
-            if (!string.IsNullOrEmpty(post))
+            if (string.IsNullOrEmpty(post))
             {
                 if (!Regex.IsMatch(post, @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-
 !#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9az][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$"))
                 {
-                    MessageBox.Show("Неверный формат для электронной почты", "Ошибка",
+                        MessageBox.Show("Неверный формат для электронной почты", "Ошибка",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
