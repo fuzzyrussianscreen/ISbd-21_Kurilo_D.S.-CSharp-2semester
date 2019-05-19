@@ -13,7 +13,12 @@ namespace PizzeriaModel
         [Required]
         public string CustomerFIO { get; set; }
 
+        public string Post { get; set; }
+
         [ForeignKey("CustomerId")]
         public virtual List<Indent> Indents { get; set; }
+
+        [ForeignKey("CustomerId")]
+        public virtual List<LetterInfo> LetterInfos { get; set; }
     }
 }

@@ -11,6 +11,8 @@ namespace PizzeriaServiceDAL.BindingModel
         [DataMember]
         public int Id { get; set; }
         [DataMember]
+        public string Post { get; set; }
+        [DataMember]
         public string CustomerFIO { get; set; }
     }
 }

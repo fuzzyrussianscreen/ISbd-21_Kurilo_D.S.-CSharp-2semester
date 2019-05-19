@@ -155,6 +155,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\IngredientController.cs" />
+    <Compile Include="Controllers\LetterInfoController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\PerformerController.cs" />
     <Compile Include="Controllers\PizzaController.cs" />

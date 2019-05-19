@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -32,6 +33,12 @@ namespace PizzaView
                 {
                     CustomerViewModel customer = APICustomer.GetRequest<CustomerViewModel>("api/Customer/Get/" + id.Value);
                     textBoxFIO.Text = customer.CustomerFIO;
+                    textBoxPost.Text = customer.Post;
+                    dataGridView.DataSource = customer.Letters;
+                    dataGridView.Columns[0].Visible = false;
+                    dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[4].AutoSizeMode =
+                    DataGridViewAutoSizeColumnMode.Fill;
                 }
                 catch (Exception ex)
                 {
@@ -48,6 +55,18 @@ namespace PizzaView
                MessageBoxIcon.Error);
                 return;
             }
+            string fio = textBoxFIO.Text;
+            string post = textBoxPost.Text;
+            if (string.IsNullOrEmpty(post))
+            {
+                if (!Regex.IsMatch(post, @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-
+!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9az][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$"))
+                {
+                        MessageBox.Show("Неверный формат для электронной почты", "Ошибка",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             try
             {
                 if (id.HasValue)
@@ -56,7 +75,8 @@ namespace PizzaView
                     bool>("api/Customer/UpdElement", new CustomerBindingModel
                     {
                         Id = id.Value,
-                        CustomerFIO = textBoxFIO.Text
+                        CustomerFIO = fio,
+                        Post = post
                     });
                 }
                 else
@@ -64,7 +84,8 @@ namespace PizzaView
                     APICustomer.PostRequest<CustomerBindingModel,
                     bool>("api/Customer/AddElement", new CustomerBindingModel
                     {
-                        CustomerFIO = textBoxFIO.Text
+                        CustomerFIO = fio,
+                        Post = post
                     });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",

@@ -55,6 +55,7 @@
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -65,12 +66,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\IngredientServiceDB.cs" />
+    <Compile Include="Implementations\LetterInfoServiceDB.cs" />
     <Compile Include="Implementations\PerformerServiceDB.cs" />
     <Compile Include="Implementations\ReptServiceDB.cs" />
     <Compile Include="Implementations\StorageServiceDB.cs" />
     <Compile Include="Migrations\201904261704154_First.cs" />
     <Compile Include="Migrations\201904261704154_First.Designer.cs">
       <DependentUpon>201904261704154_First.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905181829495_second.cs" />
+    <Compile Include="Migrations\201905181829495_second.Designer.cs">
+      <DependentUpon>201905181829495_second.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PizzeriaDbContext.cs" />
@@ -102,6 +108,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904261704154_First.resx">
       <DependentUpon>201904261704154_First.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905181829495_second.resx">
+      <DependentUpon>201905181829495_second.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
