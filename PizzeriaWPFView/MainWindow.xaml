@@ -18,8 +18,9 @@
                 <MenuItem Header="Клиенты" HorizontalAlignment="Left" Width="139.2" Click="клиентыToolStripMenuItem_Click"/>
                 <MenuItem Header="Ингредиенты" HorizontalAlignment="Left" Width="164" Margin="0,0,-24.8,0" Click="компонентыToolStripMenuItem_Click"/>
                 <MenuItem Header="Виды пицц" HorizontalAlignment="Left" Width="152" Margin="0,0,-12.8,0" Click="изделияToolStripMenuItem_Click"/>
+                <MenuItem x:Name="Storage" Header="Склады" HorizontalAlignment="Left" Width="139.2" Click="складыToolStripMenuItem_Click"/>
             </MenuItem>
-            <MenuItem Header="MenuItem"/>
+            <MenuItem x:Name="PutOnStroage" Header="Пополнить склад" Click="пополнитьСкладToolStripMenuItem_Click"/>
         </Menu>
 
     </Grid>

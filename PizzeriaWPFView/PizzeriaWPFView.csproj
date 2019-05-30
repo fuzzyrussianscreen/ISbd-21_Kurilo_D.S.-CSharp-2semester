@@ -91,6 +91,9 @@
     <Compile Include="WindowPizzas.xaml.cs">
       <DependentUpon>WindowPizzas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowPutOnStorage.xaml.cs">
+      <DependentUpon>WindowPutOnStorage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowStorage.xaml.cs">
       <DependentUpon>WindowStorage.xaml</DependentUpon>
     </Compile>
@@ -142,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowPizzas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowPutOnStorage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
