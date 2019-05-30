@@ -15,6 +15,9 @@ namespace PizzeriaServiceImplement
         public List<Indent> Indents { get; set; }
         public List<Pizza> Pizzas { get; set; }
         public List<PizzaIngredient> PizzaIngredient { get; set; }
+        public List<Storage> Storages { get; set; }
+        public List<StorageIngredient> StorageIngredients { get; set; }
+
         private DataListSingleton()
         {
             Customers = new List<Customer>();
@@ -22,7 +25,8 @@ namespace PizzeriaServiceImplement
             Indents = new List<Indent>();
             Pizzas = new List<Pizza>();
             PizzaIngredient = new List<PizzaIngredient>();
-            
+            Storages = new List<Storage>();
+            StorageIngredients = new List<StorageIngredient>();
         }
         public static DataListSingleton GetInstance()
         {

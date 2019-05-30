@@ -131,5 +131,18 @@ namespace PizzeriaWPFView
         {
             LoadData();
         }
+
+        private void складыToolStripMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WindowStorages>();
+            form.ShowDialog();
+        }
+        
+
+        private void пополнитьСкладToolStripMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WindowPutOnStorage>();
+            form.ShowDialog();
+        }
     }
 }
