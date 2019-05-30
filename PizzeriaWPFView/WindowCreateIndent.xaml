@@ -1,0 +1,22 @@
+﻿<Window x:Name="CreateIndent" x:Class="PizzeriaWPFView.WindowCreateIndent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PizzeriaWPFView"
+        mc:Ignorable="d"
+        Title="Создание заказа" Height="290.959" Width="568.767" Loaded="WindowCreateIndent_Load">
+    <Grid Margin="-1,3,3.6,0" RenderTransformOrigin="0.439,0.454">
+        <Label x:Name="label" Content="Клиент" HorizontalAlignment="Left" Height="33" Margin="27,40,0,0" VerticalAlignment="Top" Width="59"/>
+        <Label x:Name="label_Copy" Content="Пицца" HorizontalAlignment="Left" Height="33" Margin="27,73,0,0" VerticalAlignment="Top" Width="59"/>
+        <Label x:Name="label_Copy1" Content="Количество" HorizontalAlignment="Left" Height="33" Margin="27,106,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="label_Copy2" Content="Сумма" HorizontalAlignment="Left" Height="33" Margin="27,139,0,0" VerticalAlignment="Top" Width="59"/>
+        <TextBox x:Name="textBoxCount" HorizontalAlignment="Left" Height="33" Margin="163,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" TextChanged="textBoxCount_TextChanged"/>
+        <ComboBox x:Name="comboBoxCustomer" HorizontalAlignment="Left" Height="33" Margin="163,40,0,0" VerticalAlignment="Top" Width="168"/>
+        <ComboBox x:Name="comboBoxPizza" HorizontalAlignment="Left" Height="33" Margin="163,68,0,0" VerticalAlignment="Top" Width="168" SelectionChanged="comboBoxPizza_SelectedIndexChanged"/>
+        <TextBox x:Name="textBoxSum" HorizontalAlignment="Left" Height="33" Margin="163,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" IsReadOnlyCaretVisible="True"/>
+        <Button x:Name="buttonSave" Content="Сохранить" HorizontalAlignment="Left" Height="27" Margin="208,195,0,0" VerticalAlignment="Top" Width="87" Click="buttonSave_Click"/>
+        <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Left" Height="27" Margin="310,195,0,0" VerticalAlignment="Top" Width="87" Click="buttonCancel_Click"/>
+
+    </Grid>
+</Window>

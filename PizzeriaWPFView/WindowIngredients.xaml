@@ -1,0 +1,17 @@
+﻿<Window x:Name="Ingredients" x:Class="PizzeriaWPFView.WindowIngredients"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PizzeriaWPFView"
+        mc:Ignorable="d"
+        Title="Ингредиенты" Height="480" Width="784.932" Loaded="WindowIngredients_Load">
+    <Grid>
+        <DataGrid x:Name="dataGridView" HorizontalAlignment="Left" Height="378" Margin="34,32,0,0" VerticalAlignment="Top" Width="473"/>
+        <Button x:Name="buttonCreate" Content="Создать" HorizontalAlignment="Left" Height="56" Margin="543,32,0,0" VerticalAlignment="Top" Width="206" Click="buttonAdd_Click"/>
+        <Button x:Name="buttonRef1" Content="Изменить" HorizontalAlignment="Left" Height="56" Margin="543,93,0,0" VerticalAlignment="Top" Width="206" Click="buttonUpd_Click"/>
+        <Button x:Name="buttonDelete" Content="Удалить" HorizontalAlignment="Left" Height="56" Margin="543,154,0,0" VerticalAlignment="Top" Width="206" RenderTransformOrigin="0.536,2.173" Click="buttonDel_Click"/>
+        <Button x:Name="buttonRef" Content="Обновить" HorizontalAlignment="Left" Height="56" Margin="543,215,0,0" VerticalAlignment="Top" Width="206" Click="buttonRef_Click"/>
+
+    </Grid>
+</Window>

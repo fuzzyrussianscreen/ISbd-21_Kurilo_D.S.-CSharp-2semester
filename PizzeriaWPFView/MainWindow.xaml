@@ -1,0 +1,25 @@
+﻿<Window x:Name="Indents" x:Class="PizzeriaWPFView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PizzeriaWPFView"
+        mc:Ignorable="d"
+        Title="Заказы" Height="632.348" Width="1216.054">
+    <Grid Margin="0,0,23.2,28.2">
+        <DataGrid x:Name="dataGridView" HorizontalAlignment="Left" Height="442" Margin="41,113,0,0" VerticalAlignment="Top" Width="869" SelectionMode="Single"/>
+        <Button x:Name="buttonCreateIndent" Content="Создать заках" HorizontalAlignment="Left" Height="56" Margin="947,52,0,0" VerticalAlignment="Top" Width="206" Click="buttonCreateIndent_Click"/>
+        <Button x:Name="buttonTakeIndentInWork" Content="Отправит в работу" HorizontalAlignment="Left" Height="56" Margin="947,113,0,0" VerticalAlignment="Top" Width="206" Click="buttonTakeIndentInWork_Click"/>
+        <Button x:Name="buttonIndentReady" Content="Заказ готов" HorizontalAlignment="Left" Height="56" Margin="947,174,0,0" VerticalAlignment="Top" Width="206" Click="buttonIndentReady_Click"/>
+        <Button x:Name="buttonPayOrder" Content="Заказ оплачен" HorizontalAlignment="Left" Height="56" Margin="947,235,0,0" VerticalAlignment="Top" Width="206" RenderTransformOrigin="0.536,2.173" Click="buttonPayOrder_Click"/>
+        <Button x:Name="buttonRef" Content="Обновить" HorizontalAlignment="Left" Height="56" Margin="947,296,0,0" VerticalAlignment="Top" Width="206" Click="buttonRef_Click"/>
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="22" Margin="10,10,0,0" VerticalAlignment="Top" Width="329">
+            <MenuItem Header="Info" Width="61" Height="22">
+                <MenuItem Header="Клиенты" HorizontalAlignment="Left" Width="139.2" Click="клиентыToolStripMenuItem_Click"/>
+                <MenuItem Header="Ингредиенты" HorizontalAlignment="Left" Width="164" Margin="0,0,-24.8,0" Click="компонентыToolStripMenuItem_Click"/>
+                <MenuItem Header="Виды пицц" HorizontalAlignment="Left" Width="152" Margin="0,0,-12.8,0" Click="изделияToolStripMenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+
+    </Grid>
+</Window>
