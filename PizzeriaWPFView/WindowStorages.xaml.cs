@@ -35,7 +35,7 @@ namespace PizzeriaWPFView
             this.service = service;
         }
 
-        private void FormStorages_Load(object sender, EventArgs e)
+        private void FormStorages_Load(object sender, RoutedEventArgs e)
         {
             LoadData();
         }
@@ -47,33 +47,33 @@ namespace PizzeriaWPFView
                 List<StorageViewModel> list = service.GetList();
                 if (list != null)
                 {
-                    dataGridView.DataSource = list;
-                    dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].AutoSizeMode =
-                    DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.ItemsSource = list;
+                    dataGridView.Columns[0].Visibility = Visibility.Collapsed;
+                    dataGridView.Columns[1].Width = DataGridLength.Auto;
+                    dataGridView.Columns[2].Visibility = Visibility.Collapsed;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+               MessageBoxImage.Error);
             }
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormStorage>();
-            if (form.ShowDialog() == DialogResult.OK)
+            var form = Container.Resolve<WindowStorage>();
+            if (form.ShowDialog() == true)
             {
                 LoadData();
             }
         }
         private void buttonUpd_Click(object sender, EventArgs e)
         {
-            if (dataGridView.SelectedRows.Count == 1)
+            if (dataGridView.SelectedCells.Count >= 1)
             {
-                var form = Container.Resolve<FormStorage>();
-                form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                if (form.ShowDialog() == DialogResult.OK)
+                var form = Container.Resolve<WindowStorage>();
+                form.Id = (dataGridView.SelectedItems[0] as StorageViewModel).Id;
+                if (form.ShowDialog() == true)
                 {
                     LoadData();
                 }
@@ -81,20 +81,20 @@ namespace PizzeriaWPFView
         }
         private void buttonDel_Click(object sender, EventArgs e)
         {
-            if (dataGridView.SelectedRows.Count == 1)
+            if (dataGridView.SelectedCells.Count >= 1)
             {
-                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo,
-               MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo,
+               MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                    int id = Convert.ToInt32(dataGridView.SelectedCells[0].Item);
                     try
                     {
                         service.DelElement(id);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                       MessageBoxIcon.Error);
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                       MessageBoxImage.Error);
                     }
                     LoadData();
                 }
@@ -105,5 +105,6 @@ namespace PizzeriaWPFView
         {
             LoadData();
         }
+        
     }
 }

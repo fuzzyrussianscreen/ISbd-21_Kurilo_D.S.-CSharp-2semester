@@ -45,24 +45,22 @@ namespace PizzeriaWPFView
                 List<IngredientViewModel> listC = serviceC.GetList();
                 if (listC != null)
                 {
-                    comboBoxIngredient.DisplayMember = "IngredientName";
-                    comboBoxIngredient.ValueMember = "Id";
-                    comboBoxIngredient.DataSource = listC;
+                    comboBoxIngredient.DisplayMemberPath = "IngredientName";
+                    comboBoxIngredient.ItemsSource = listC;
                     comboBoxIngredient.SelectedItem = null;
                 }
                 List<StorageViewModel> listS = serviceS.GetList();
                 if (listS != null)
                 {
-                    comboBoxStorage.DisplayMember = "StorageName";
-                    comboBoxStorage.ValueMember = "Id";
-                    comboBoxStorage.DataSource = listS;
+                    comboBoxStorage.DisplayMemberPath = "StorageName";
+                    comboBoxStorage.ItemsSource = listS;
                     comboBoxStorage.SelectedItem = null;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+               MessageBoxImage.Error);
             }
         }
         private void buttonSave_Click(object sender, RoutedEventArgs e)
@@ -70,43 +68,43 @@ namespace PizzeriaWPFView
             if (string.IsNullOrEmpty(textBoxCount.Text))
             {
                 MessageBox.Show("Заполните поле Количество", "Ошибка",
-               MessageBoxButtons.OK, MessageBoxIcon.Error);
+               MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (comboBoxIngredient.SelectedValue == null)
             {
-                MessageBox.Show("Выберите компонент", "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show("Выберите компонент", "Ошибка", MessageBoxButton.OK,
+               MessageBoxImage.Error);
                 return;
             }
             if (comboBoxStorage.SelectedValue == null)
             {
-                MessageBox.Show("Выберите склад", "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show("Выберите склад", "Ошибка", MessageBoxButton.OK,
+               MessageBoxImage.Error);
                 return;
             }
             try
             {
                 serviceM.PutIngredientOnStorage(new StorageIngredientBindingModel
                 {
-                    IngredientId = Convert.ToInt32(comboBoxIngredient.SelectedValue),
-                    StorageId = Convert.ToInt32(comboBoxStorage.SelectedValue),
+                    IngredientId = (comboBoxIngredient.SelectedValue as IngredientViewModel).Id,
+                    StorageId = (comboBoxStorage.SelectedValue as StorageViewModel).Id,
                     Count = Convert.ToInt32(textBoxCount.Text)
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
-               MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DialogResult = DialogResult.OK;
+               MessageBoxButton.OK, MessageBoxImage.Information);
+                DialogResult = true;
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+               MessageBoxImage.Error);
             }
         }
         private void buttonCancel_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            DialogResult = false;
             Close();
         }
     }

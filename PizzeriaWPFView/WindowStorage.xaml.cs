@@ -45,18 +45,17 @@ namespace PizzeriaWPFView
                     if (view != null)
                     {
                         textBoxName.Text = view.StorageName;
-                        dataGridView.DataSource = view.StorageIngredients;
-                        dataGridView.Columns[0].Visible = false;
-                        dataGridView.Columns[1].Visible = false;
-                        dataGridView.Columns[2].Visible = false;
-                        dataGridView.Columns[3].AutoSizeMode =
-                        DataGridViewAutoSizeColumnMode.Fill;
+                        dataGridView.ItemsSource = view.StorageIngredients;
+                        dataGridView.Columns[0].Visibility = Visibility.Collapsed;
+                        dataGridView.Columns[1].Visibility = Visibility.Collapsed;
+                        dataGridView.Columns[2].Visibility = Visibility.Collapsed;
+                        dataGridView.Columns[3].Width = DataGridLength.Auto;
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                   MessageBoxImage.Error);
                 }
             }
         }
@@ -64,8 +63,8 @@ namespace PizzeriaWPFView
         {
             if (string.IsNullOrEmpty(textBoxName.Text))
             {
-                MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show("Заполните название", "Ошибка", MessageBoxButton.OK,
+               MessageBoxImage.Error);
                 return;
             }
             try
@@ -86,19 +85,19 @@ namespace PizzeriaWPFView
                     });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
-               MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DialogResult = DialogResult.OK;
+               MessageBoxButton.OK, MessageBoxImage.Information);
+                DialogResult = true;
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+               MessageBoxImage.Error);
             }
         }
         private void buttonCancel_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            DialogResult = false;
             Close();
         }
     }
