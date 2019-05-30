@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PizzeriaWPFView"
         mc:Ignorable="d"
-        Title="WindowPizzaIngredient" Height="216.986" Width="547.398" Loaded="Window_Loaded">
+        Title="Ингредиенты пиццы" Height="216.986" Width="547.398" Loaded="Window_Loaded">
     <Grid>
         <Label x:Name="label_Copy1" Content="Компонент" HorizontalAlignment="Left" Height="46" Margin="28,19,0,0" VerticalAlignment="Top" Width="162"/>
         <Label x:Name="label_Copy" Content="Количество" HorizontalAlignment="Left" Height="46" Margin="28,57,0,0" VerticalAlignment="Top" Width="162"/>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PizzeriaWPFView"
         mc:Ignorable="d"
-        Title="MainWindow" Height="632.348" Width="1216.054">
+        Title="Заказы" Height="632.348" Width="1216.054">
     <Grid Margin="0,0,23.2,28.2">
         <DataGrid x:Name="dataGridView" HorizontalAlignment="Left" Height="442" Margin="41,113,0,0" VerticalAlignment="Top" Width="869" SelectionMode="Single"/>
         <Button x:Name="buttonCreateIndent" Content="Создать заках" HorizontalAlignment="Left" Height="56" Margin="947,52,0,0" VerticalAlignment="Top" Width="206" Click="buttonCreateIndent_Click"/>

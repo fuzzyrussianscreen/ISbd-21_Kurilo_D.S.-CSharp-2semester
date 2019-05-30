@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PizzeriaWPFView"
         mc:Ignorable="d"
-        Title="WindowPizza" Height="613.972" Width="746.301" Loaded="WindowProduct_Load">
+        Title="Пицца" Height="613.972" Width="746.301" Loaded="WindowProduct_Load">
     <Grid>
         <GroupBox x:Name="groupBox" Header="Ингредиенты" HorizontalAlignment="Left" Height="421" Margin="10,113,0,0" VerticalAlignment="Top" Width="720">
             <Grid HorizontalAlignment="Left" Height="394" Margin="4,0,-2.8,0" VerticalAlignment="Top" Width="706">
