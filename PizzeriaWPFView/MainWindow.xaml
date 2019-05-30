@@ -19,6 +19,7 @@
                 <MenuItem Header="Ингредиенты" HorizontalAlignment="Left" Width="164" Margin="0,0,-24.8,0" Click="компонентыToolStripMenuItem_Click"/>
                 <MenuItem Header="Виды пицц" HorizontalAlignment="Left" Width="152" Margin="0,0,-12.8,0" Click="изделияToolStripMenuItem_Click"/>
             </MenuItem>
+            <MenuItem Header="MenuItem"/>
         </Menu>
 
     </Grid>

@@ -19,16 +19,13 @@ namespace PizzeriaServiceImplement.Implementations
         }
         public List<CustomerViewModel> GetList()
         {
-            List<CustomerViewModel> result = new List<CustomerViewModel>();
-            for (int i = 0; i < source.Customers.Count; ++i)
+            List<CustomerViewModel> result = source.Customers.Select(rec => new CustomerViewModel
             {
-                result.Add(new CustomerViewModel
-                {
-                    Id = source.Customers[i].Id,
-                    CustomerFIO = source.Customers[i].CustomerFIO
-                });
-            }
-        return result;
+                Id = rec.Id,
+                CustomerFIO = rec.CustomerFIO
+            })
+            .ToList();
+            return result;
         }
         public CustomerViewModel GetElement(int id)
         {
