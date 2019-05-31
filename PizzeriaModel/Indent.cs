@@ -14,5 +14,8 @@ namespace PizzeriaModel
         public IndentStatus Status { get; set; }
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
+
+        public virtual Customer Customer { get; set; }
+        public virtual Pizza Pizza { get; set; }
     }
 }
