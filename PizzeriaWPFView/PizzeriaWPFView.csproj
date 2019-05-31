@@ -35,7 +35,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -179,15 +188,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PizzeriaModel\PizzeriaModel.csproj">
@@ -197,6 +204,10 @@
     <ProjectReference Include="..\PizzeriaServiceDAL\PizzeriaServiceDAL.csproj">
       <Project>{e29ad7aa-e804-4f28-820f-5f727d9757de}</Project>
       <Name>PizzeriaServiceDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PizzeriaServiceImplementDataBase\PizzeriaServiceImplementDataBase.csproj">
+      <Project>{D98C4B24-20F9-4043-A24E-119BCD9D7FBC}</Project>
+      <Name>PizzeriaServiceImplementDataBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\PizzeriaServiceImplement\PizzeriaServiceImplement.csproj">
       <Project>{0c6723ea-1f18-4473-be8b-081e4dd9383a}</Project>
