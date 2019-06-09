@@ -1,0 +1,18 @@
+﻿<Window x:Class="PizzeriaWPFView.WindowCustomerIndent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PizzeriaWPFView"
+        mc:Ignorable="d"
+        Title="Заказы клиента" Height="525" Width="863.06">
+    <Grid>
+        <DatePicker x:Name="dateTimePickerFrom" HorizontalAlignment="Left" Height="26" Margin="67,10,0,0" VerticalAlignment="Top" Width="174"/>
+        <DatePicker x:Name="dateTimePickerTo" HorizontalAlignment="Left" Height="26" Margin="280,11,0,0" VerticalAlignment="Top" Width="174"/>
+        <Label x:Name="label" Content="С" HorizontalAlignment="Left" Height="26" Margin="28,10,0,0" VerticalAlignment="Top" Width="34"/>
+        <Label x:Name="label_Copy" Content="по" HorizontalAlignment="Left" Height="26" Margin="246,10,0,0" VerticalAlignment="Top" Width="34" RenderTransformOrigin="0.132,0.456"/>
+        <Button x:Name="button_make" Content="Сформировать" HorizontalAlignment="Left" Height="25" Margin="493,10,0,0" VerticalAlignment="Top" Width="138" Click="buttonMake_Click"/>
+        <Button x:Name="button_pdf" Content="В PDF" HorizontalAlignment="Left" Height="25" Margin="652,10,0,0" VerticalAlignment="Top" Width="138" Click="buttonToPdf_Click"/>
+
+    </Grid>
+</Window>

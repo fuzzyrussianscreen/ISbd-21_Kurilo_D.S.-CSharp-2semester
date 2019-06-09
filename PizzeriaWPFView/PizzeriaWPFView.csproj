@@ -82,6 +82,9 @@
     <Compile Include="WindowCustomer.xaml.cs">
       <DependentUpon>WindowCustomer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowCustomerIndent.xaml.cs">
+      <DependentUpon>WindowCustomerIndent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowCustomers.xaml.cs">
       <DependentUpon>WindowCustomers.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,9 @@
     </Compile>
     <Compile Include="WindowStorage.xaml.cs">
       <DependentUpon>WindowStorage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowStorageLoad.xaml.cs">
+      <DependentUpon>WindowStorageLoad.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowStorages.xaml.cs">
       <DependentUpon>WindowStorages.xaml</DependentUpon>
@@ -130,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowCustomerIndent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowStorage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowStorageLoad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
