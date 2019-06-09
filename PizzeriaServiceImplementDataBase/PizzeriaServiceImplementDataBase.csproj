@@ -53,6 +53,7 @@
     <Compile Include="Implementations\IngredientServiceDB.cs" />
     <Compile Include="Implementations\MainServiceDB.cs" />
     <Compile Include="Implementations\PizzaServiceDB.cs" />
+    <Compile Include="Implementations\ReptServiceDB.cs" />
     <Compile Include="Implementations\StorageServiceDB.cs" />
     <Compile Include="Migrations\201905311130582_First.cs" />
     <Compile Include="Migrations\201905311130582_First.Designer.cs">
