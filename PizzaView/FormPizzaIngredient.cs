@@ -1,4 +1,5 @@
-﻿using PizzeriaServiceDAL.Interfaces;
+﻿using PizzaView.API;
+using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -9,33 +10,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace PizzaView
 {
     public partial class FormPizzaIngredient : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public PizzaIngredientViewModel Model
         {
             set { model = value; }
             get { return model; }
         }
-        private readonly IIngredientService service;
         private PizzaIngredientViewModel model;
 
-        public FormPizzaIngredient(IIngredientService service)
+        public FormPizzaIngredient()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormProductComponent_Load(object sender, EventArgs e)
         {
             try
             {
-                List<IngredientViewModel> list = service.GetList();
+                List<IngredientViewModel> list = APICustomer.GetRequest<List<IngredientViewModel>>("api/Ingredient/GetList");
                 if (list != null)
                 {
                     comboBoxIngredient.DisplayMember = "IngredientName";

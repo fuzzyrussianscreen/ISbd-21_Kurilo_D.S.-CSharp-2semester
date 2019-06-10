@@ -1,4 +1,5 @@
-﻿using PizzeriaServiceDAL.BindingModel;
+﻿using PizzaView.API;
+using PizzeriaServiceDAL.BindingModel;
 using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceDAL.ViewModel;
 using System;
@@ -10,32 +11,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace PizzaView
 {
     public partial class FormCreateIndent : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly ICustomerService serviceC;
-        private readonly IPizzaService serviceP;
-        private readonly IMainService serviceM;
-
-        public FormCreateIndent(ICustomerService serviceC, IPizzaService serviceP,
-IMainService serviceM)
+        public FormCreateIndent()
         {
             InitializeComponent();
-            this.serviceC = serviceC;
-            this.serviceP = serviceP;
-            this.serviceM = serviceM;
         }
 
         private void FormCreateIndent_Load(object sender, EventArgs e)
         {
             try
             {
-                List<CustomerViewModel> listC = serviceC.GetList();
+                List<CustomerViewModel> listC = APICustomer.GetRequest<List<CustomerViewModel>>("api/Customer/GetList");
                 if (listC != null)
                 {
                     comboBoxCustomer.DisplayMember = "CustomerFIO";
@@ -43,7 +33,7 @@ IMainService serviceM)
                     comboBoxCustomer.DataSource = listC;
                     comboBoxCustomer.SelectedItem = null;
                 }
-                List<PizzaViewModel> listP = serviceP.GetList();
+                List<PizzaViewModel> listP = APICustomer.GetRequest<List<PizzaViewModel>>("api/Pizza/GetList");
                 if (listP != null)
                 {
                     comboBoxPizza.DisplayMember = "PizzaName";
@@ -66,7 +56,7 @@ IMainService serviceM)
                 try
                 {
                     int id = Convert.ToInt32(comboBoxPizza.SelectedValue);
-                    PizzaViewModel product = serviceP.GetElement(id);
+                    PizzaViewModel product = APICustomer.GetRequest<PizzaViewModel>("api/Pizza/Get/" + id);
                     int count = Convert.ToInt32(textBoxCount.Text);
                     textBoxSum.Text = Convert.ToInt32((count * product.Price)).ToString();
                 }
@@ -107,9 +97,10 @@ IMainService serviceM)
             }
             try
             {
-                serviceM.CreateIndent(new IndentBindingModel
+                APICustomer.PostRequest<IndentBindingModel,
+                bool>("api/Main/AddElement", new IndentBindingModel
                 {
-                    CustomerId = Convert.ToInt32(comboBoxCustomer.SelectedValue),
+                        CustomerId = Convert.ToInt32(comboBoxCustomer.SelectedValue),
                     PizzaId = Convert.ToInt32(comboBoxPizza.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToInt32(textBoxSum.Text)

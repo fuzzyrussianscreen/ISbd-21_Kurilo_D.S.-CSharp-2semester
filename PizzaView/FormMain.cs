@@ -1,4 +1,5 @@
-﻿using PizzeriaServiceDAL.BindingModel;
+﻿using PizzaView.API;
+using PizzeriaServiceDAL.BindingModel;
 using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceDAL.ViewModel;
 using PizzeriaServiceImplementDataBase.Implementations;
@@ -11,29 +12,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace PizzaView
 {
     public partial class FormMain : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IMainService service;
-        private  IReptService reptService;
-
-        public FormMain(IMainService service, IReptService reptService)
+        public FormMain()
         {
             InitializeComponent();
-            this.service = service;
-            this.reptService = reptService;
         }
 
         private void LoadData()
         {
             try
             {
-                List<IndentViewModel> list = service.GetList();
+                List<IndentViewModel> list = APICustomer.GetRequest<List<IndentViewModel>>("api/Main/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -55,27 +48,27 @@ namespace PizzaView
         }
         private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCustomers>();
+            var form = new FormCustomers();
             form.ShowDialog();
         }
         private void компонентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormIngredients>();
+            var form = new FormIngredients();
             form.ShowDialog();
         }
         private void изделияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormPizzas>();
+            var form = new FormPizzas();
             form.ShowDialog();
         }
         private void складыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormStorages>();
+            var form = new FormStorages();
             form.ShowDialog();
         }
         private void buttonCreateIndent_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCreateIndent>();
+            var form = new FormCreateIndent();
             form.ShowDialog();
             LoadData();
         }
@@ -87,7 +80,7 @@ namespace PizzaView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.TakeIndentInWork(new IndentBindingModel { Id = id });
+                    APICustomer.PostRequest<IndentBindingModel, bool>("api/Main/TakeIndentInWork", new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -104,7 +97,7 @@ namespace PizzaView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.FinishIndent(new IndentBindingModel { Id = id });
+                    APICustomer.PostRequest<IndentBindingModel, bool>("api/Main/FinishIndent", new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -121,7 +114,7 @@ namespace PizzaView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.PayIndent(new IndentBindingModel { Id = id });
+                    APICustomer.PostRequest<IndentBindingModel, bool>("api/Main/PayIndent", new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -139,7 +132,7 @@ namespace PizzaView
 
         private void пополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormPutOnStorage>();
+            var form = new FormPutOnStorage();
             form.ShowDialog();
         }
 
@@ -153,7 +146,7 @@ namespace PizzaView
             {
                 try
                 {
-                    reptService.SavePizzaPrice(new ReptBindingModel
+                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Main/SavePizzaIndent", new ReptBindingModel
                     {
                         FileName = sfd.FileName
                     });
@@ -170,12 +163,12 @@ namespace PizzaView
 
         private void загруженностьСкладовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormStorageLoad>();
+            var form = new FormStorageLoad();
             form.ShowDialog();
         }
         private void заказыКлиентовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCustomerIndent>();
+            var form = new FormCustomerIndent();
             form.ShowDialog();
         }
     }

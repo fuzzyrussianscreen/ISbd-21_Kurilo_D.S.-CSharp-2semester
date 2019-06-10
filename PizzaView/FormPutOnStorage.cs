@@ -6,33 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceDAL.ViewModel;
 using PizzeriaServiceDAL.BindingModel;
+using PizzaView.API;
 
 namespace PizzaView
 {
     public partial class FormPutOnStorage : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IStorageService serviceS;
-        private readonly IIngredientService serviceC;
-        private readonly IMainService serviceM;
-        public FormPutOnStorage(IStorageService serviceS, IIngredientService serviceC,
-       IMainService serviceM)
+        public FormPutOnStorage()
         {
             InitializeComponent();
-            this.serviceS = serviceS;
-            this.serviceC = serviceC;
-            this.serviceM = serviceM;
         }
         private void FormPutOnStorage_Load(object sender, EventArgs e)
         {
             try
             {
-                List<IngredientViewModel> listC = serviceC.GetList();
+                List<IngredientViewModel> listC = APICustomer.GetRequest<List<IngredientViewModel>>("api/Ingredient/GetList");
                 if (listC != null)
                 {
                     comboBoxIngredient.DisplayMember = "IngredientName";
@@ -40,7 +31,7 @@ namespace PizzaView
                     comboBoxIngredient.DataSource = listC;
                     comboBoxIngredient.SelectedItem = null;
                 }
-                List<StorageViewModel> listS = serviceS.GetList();
+                List<StorageViewModel> listS = APICustomer.GetRequest<List<StorageViewModel>>("api/Storage/GetList");
                 if (listS != null)
                 {
                     comboBoxStorage.DisplayMember = "StorageName";
@@ -77,7 +68,7 @@ namespace PizzaView
             }
             try
             {
-                serviceM.PutIngredientOnStorage(new StorageIngredientBindingModel
+                APICustomer.PostRequest<StorageIngredientBindingModel, bool>("api/Main/PutIngredientOnStorage", new StorageIngredientBindingModel
                 {
                     IngredientId = Convert.ToInt32(comboBoxIngredient.SelectedValue),
                     StorageId = Convert.ToInt32(comboBoxStorage.SelectedValue),

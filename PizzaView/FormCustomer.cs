@@ -1,4 +1,5 @@
-﻿using PizzeriaServiceDAL.BindingModel;
+﻿using PizzaView.API;
+using PizzeriaServiceDAL.BindingModel;
 using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceDAL.ViewModel;
 using System;
@@ -10,35 +11,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace PizzaView
 {
     public partial class FormCustomer : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly ICustomerService service;
         private int? id;
 
-        public FormCustomer(ICustomerService service)
+        public FormCustomer()
         {
             InitializeComponent();
-            this.service = service;
         }
 
-        private void FormClient_Load(object sender, EventArgs e)
+        private void FormCustomer_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
                 try
                 {
-                    CustomerViewModel view = service.GetElement(id.Value);
-                    if (view != null)
-                    {
-                        textBoxFIO.Text = view.CustomerFIO;
-                    }
+                    CustomerViewModel customer = APICustomer.GetRequest<CustomerViewModel>("api/Customer/Get/" + id.Value);
+                    textBoxFIO.Text = customer.CustomerFIO;
                 }
                 catch (Exception ex)
                 {
@@ -59,7 +52,8 @@ namespace PizzaView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new CustomerBindingModel
+                    APICustomer.PostRequest<CustomerBindingModel,
+                    bool>("api/Customer/UpdElement", new CustomerBindingModel
                     {
                         Id = id.Value,
                         CustomerFIO = textBoxFIO.Text
@@ -67,7 +61,8 @@ namespace PizzaView
                 }
                 else
                 {
-                    service.AddElement(new CustomerBindingModel
+                    APICustomer.PostRequest<CustomerBindingModel,
+                    bool>("api/Customer/AddElement", new CustomerBindingModel
                     {
                         CustomerFIO = textBoxFIO.Text
                     });

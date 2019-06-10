@@ -1,4 +1,5 @@
-﻿using PizzeriaServiceDAL.BindingModel;
+﻿using PizzaView.API;
+using PizzeriaServiceDAL.BindingModel;
 using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceDAL.ViewModel;
 using System;
@@ -10,21 +11,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace PizzaView
 {
     public partial class FormStorage : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IStorageService service;
         private int? id;
-        public FormStorage(IStorageService service)
+        public FormStorage()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void FormStorage_Load(object sender, EventArgs e)
         {
@@ -32,7 +28,7 @@ namespace PizzaView
             {
                 try
                 {
-                    StorageViewModel view = service.GetElement(id.Value);
+                    StorageViewModel view = APICustomer.GetRequest<StorageViewModel>("api/Storage/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxName.Text = view.StorageName;
@@ -63,7 +59,8 @@ namespace PizzaView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new StorageBindingModel
+                    APICustomer.PostRequest<StorageBindingModel,
+                    bool>("api/Storage/UpdElement", new StorageBindingModel
                     {
                         Id = id.Value,
                         StorageName = textBoxName.Text
@@ -71,7 +68,8 @@ namespace PizzaView
                 }
                 else
                 {
-                    service.AddElement(new StorageBindingModel
+                    APICustomer.PostRequest<StorageBindingModel,
+                    bool>("api/Storage/AddElement", new StorageBindingModel
                     {
                         StorageName = textBoxName.Text
                     });

@@ -1,4 +1,5 @@
-﻿using PizzeriaServiceDAL.BindingModel;
+﻿using PizzaView.API;
+using PizzeriaServiceDAL.BindingModel;
 using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceDAL.ViewModel;
 using System;
@@ -10,23 +11,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace PizzaView
 {
     public partial class FormPizza : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IPizzaService service;
         private int? id;
         private List<PizzaIngredientViewModel> pizzaIngredients;
 
-        public FormPizza(IPizzaService service)
+        public FormPizza()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormProduct_Load(object sender, EventArgs e)
@@ -35,7 +31,7 @@ namespace PizzaView
             {
                 try
                 {
-                    PizzaViewModel view = service.GetElement(id.Value);
+                    PizzaViewModel view = APICustomer.GetRequest<PizzaViewModel>("api/Pizza/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxName.Text = view.PizzaName;
@@ -79,7 +75,7 @@ namespace PizzaView
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormPizzaIngredient>();
+            var form = new FormPizzaIngredient();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 if (form.Model != null)
@@ -97,7 +93,7 @@ namespace PizzaView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormPizzaIngredient>();
+                var form = new FormPizzaIngredient();
                 form.Model = pizzaIngredients[dataGridView.SelectedRows[0].Cells[0].RowIndex];
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -167,7 +163,8 @@ namespace PizzaView
                 }
                 if (id.HasValue)
                 {
-                    service.UpdElement(new PizzaBindingModel
+                    APICustomer.PostRequest<PizzaBindingModel,
+                    bool>("api/Pizza/UpdElement", new PizzaBindingModel
                     {
                         Id = id.Value,
                         PizzaName = textBoxName.Text,
@@ -177,7 +174,8 @@ namespace PizzaView
                 }
                 else
                 {
-                    service.AddElement(new PizzaBindingModel
+                    APICustomer.PostRequest<PizzaBindingModel,
+                    bool>("api/Pizza/AddElement", new PizzaBindingModel
                     {
                         PizzaName = textBoxName.Text,
                         Price = Convert.ToInt32(textBoxPrice.Text),

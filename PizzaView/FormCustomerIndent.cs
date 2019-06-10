@@ -1,6 +1,8 @@
 ﻿using Microsoft.Reporting.WinForms;
+using PizzaView.API;
 using PizzeriaServiceDAL.BindingModel;
 using PizzeriaServiceDAL.Interfaces;
+using PizzeriaServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,20 +12,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Unity;
 
 namespace PizzaView
 {
     public partial class FormCustomerIndent : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IReptService service;
 
-        public FormCustomerIndent(IReptService service)
+        public FormCustomerIndent()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void buttonMake_Click(object sender, EventArgs e)
@@ -42,7 +39,8 @@ namespace PizzaView
                 " по " +
                dateTimePickerTo.Value.ToShortDateString());
                 reportViewer.LocalReport.SetParameters(parameter);
-                var dataSource = service.GetCustomerIndents(new ReptBindingModel
+                List<CustomerIndentViewModel> response = APICustomer.PostRequest<ReptBindingModel,
+                List<CustomerIndentViewModel>>("api/Rept/GetCustomerIndents", new ReptBindingModel
                 {
                     DateFrom = dateTimePickerFrom.Value,
                     DateTo = dateTimePickerTo.Value
@@ -74,7 +72,7 @@ namespace PizzaView
             {
                 try
                 {
-                    service.SaveCustomerIndents(new ReptBindingModel
+                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Rept/SaveCustomerOrders", new ReptBindingModel
                     {
                         FileName = sfd.FileName,
                         DateFrom = dateTimePickerFrom.Value,
