@@ -37,19 +37,19 @@ namespace PizzeriaRestApi.Controllers
         [HttpPost]
         public void TakeIndentInWork(IndentBindingModel model)
         {
-            _service.TakeIndentInWork(model);
+            _service.TakeOrderInWork(model);
         }
 
         [HttpPost]
         public void FinishIndent(IndentBindingModel model)
         {
-            _service.FinishIndent(model);
+            _service.FinishOrder(model);
         }
 
         [HttpPost]
         public void PayIndent(IndentBindingModel model)
         {
-            _service.PayIndent(model);
+            _service.PayOrder(model);
         }
 
         [HttpPost]
