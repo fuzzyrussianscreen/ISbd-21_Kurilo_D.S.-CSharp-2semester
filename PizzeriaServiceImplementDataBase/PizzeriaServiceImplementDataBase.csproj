@@ -66,6 +66,7 @@
     <Compile Include="Implementations\CustomerServiceDB.cs" />
     <Compile Include="Implementations\IngredientServiceDB.cs" />
     <Compile Include="Implementations\MainServiceDB.cs" />
+    <Compile Include="Implementations\PerformerServiceDB.cs" />
     <Compile Include="Implementations\PizzaServiceDB.cs" />
     <Compile Include="Implementations\ReptServiceDB.cs" />
     <Compile Include="Implementations\StorageServiceDB.cs" />
@@ -76,6 +77,10 @@
     <Compile Include="Migrations\201906101054361_Second.cs" />
     <Compile Include="Migrations\201906101054361_Second.Designer.cs">
       <DependentUpon>201906101054361_Second.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906101141562_Third.cs" />
+    <Compile Include="Migrations\201906101141562_Third.Designer.cs">
+      <DependentUpon>201906101141562_Third.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PizzeriaDbContext.cs" />
@@ -107,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906101054361_Second.resx">
       <DependentUpon>201906101054361_Second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101141562_Third.resx">
+      <DependentUpon>201906101141562_Third.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

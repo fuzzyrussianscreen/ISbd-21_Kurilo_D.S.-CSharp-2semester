@@ -152,7 +152,7 @@ namespace PizzeriaWPFView
             {
                 try
                 {
-                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Main/SavePizzaIndent", new ReptBindingModel
+                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Rept/SavePizzaIndent", new ReptBindingModel
                     {
                         FileName = sfd.FileName
                     });
@@ -177,6 +177,27 @@ namespace PizzeriaWPFView
         {
             var form = new WindowStorageLoad();
             form.ShowDialog();
+        }
+
+        private void сотрудникиToolStripMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var form = new WindowPerformers();
+            form.ShowDialog();
+        }
+        
+        private void запускРаботToolStripMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                APICustomer.PostRequest<int?, bool>("api/Main/StartWork", null);
+                MessageBox.Show("Выполнено", "Успех", MessageBoxButton.OK,
+               MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+               MessageBoxImage.Error);
+            }
         }
     }
 }

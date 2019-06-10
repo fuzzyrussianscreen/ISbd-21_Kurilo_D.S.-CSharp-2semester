@@ -53,6 +53,7 @@
     <Compile Include="Ingredient.cs" />
     <Compile Include="Indent.cs" />
     <Compile Include="IndentStatus.cs" />
+    <Compile Include="Performer.cs" />
     <Compile Include="Pizza.cs" />
     <Compile Include="PizzaIngredient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

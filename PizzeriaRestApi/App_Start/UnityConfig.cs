@@ -61,6 +61,8 @@ namespace PizzeriaRestApi
            HierarchicalLifetimeManager());
             container.RegisterType<IReptService, ReptServiceDB>(new
            HierarchicalLifetimeManager());
+            container.RegisterType<IPerformerService, PerformerServiceDB>(new
+           HierarchicalLifetimeManager());
         }
     }
 }

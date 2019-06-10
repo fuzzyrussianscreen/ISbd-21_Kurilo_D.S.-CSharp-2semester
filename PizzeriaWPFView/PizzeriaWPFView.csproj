@@ -156,6 +156,12 @@
     <Compile Include="WindowIngredients.xaml.cs">
       <DependentUpon>WindowIngredients.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowPerformer.xaml.cs">
+      <DependentUpon>WindowPerformer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowPerformers.xaml.cs">
+      <DependentUpon>WindowPerformers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowPizza.xaml.cs">
       <DependentUpon>WindowPizza.xaml</DependentUpon>
     </Compile>
@@ -214,6 +220,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowIngredients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowPerformer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowPerformers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

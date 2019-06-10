@@ -163,6 +163,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\IngredientController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\PerformerController.cs" />
     <Compile Include="Controllers\PizzaController.cs" />
     <Compile Include="Controllers\ReptController.cs" />
     <Compile Include="Controllers\StorageController.cs" />
@@ -170,6 +171,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\WorkPerformer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
