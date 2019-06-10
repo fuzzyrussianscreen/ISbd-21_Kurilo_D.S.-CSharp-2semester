@@ -99,7 +99,7 @@ namespace PizzeriaWPFView
                 APICustomer.PostRequest<IndentBindingModel,
                 bool>("api/Main/CreateIndent", new IndentBindingModel
                 {
-                    CustomerId = Convert.ToInt32(comboBoxCustomer.SelectedValue),
+                    CustomerId = (comboBoxCustomer.SelectedValue as CustomerViewModel).Id,
                     PizzaId = (comboBoxPizza.SelectedValue as PizzaViewModel).Id,
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToInt32(textBoxSum.Text)

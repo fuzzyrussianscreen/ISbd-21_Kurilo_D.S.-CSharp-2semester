@@ -87,7 +87,7 @@ namespace PizzeriaWPFView
             {
                 try
                 {
-                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Rept/SaveCustomerOrders", new ReptBindingModel
+                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Rept/SaveCustomerIndents", new ReptBindingModel
                     {
                         FileName = sfd.FileName,
                         DateFrom = dateTimePickerFrom.SelectedDate.Value,

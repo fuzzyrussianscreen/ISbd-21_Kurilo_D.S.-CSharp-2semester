@@ -152,7 +152,7 @@ namespace PizzeriaWPFView
             {
                 try
                 {
-                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Rept/SavePizzaIndent", new ReptBindingModel
+                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Rept/SavePizzaPrice", new ReptBindingModel
                     {
                         FileName = sfd.FileName
                     });

@@ -274,9 +274,10 @@ namespace PizzeriaServiceImplementDataBase.Implementations
         public void SaveCustomerIndents(ReptBindingModel model)
         {
             //из ресрусов получаем шрифт для кирилицы
-            if (!File.Exists("TIMCYR.TTF"))
+            if (!File.Exists("D://ФИСТ ИСЭбд/ISbd-21_Kurilo_D.S.-CSharp-2semester/TIMCYR.TTF"))
             {
-                File.WriteAllBytes("TIMCYR.TTF", Properties.Resources.TIMCYR);
+                File.WriteAllBytes("D://ФИСТ ИСЭбд/ISbd-21_Kurilo_D.S.-CSharp-2semester/TIMCYR.TTF",
+                    File.ReadAllBytes("D://ФИСТ ИСЭбд/ISbd-21_Kurilo_D.S.-CSharp-2semester/ISbd-21_Kurilo_D.S.-CSharp-2semester/PizzeriaServiceImplementDataBase/Resources/TIMCYR.TTF"));
             }
             //открываем файл для работы
             FileStream fs = new FileStream(model.FileName, FileMode.OpenOrCreate,
@@ -286,7 +287,7 @@ namespace PizzeriaServiceImplementDataBase.Implementations
             doc.SetMargins(0.5f, 0.5f, 0.5f, 0.5f);
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
             doc.Open();
-            BaseFont baseFont = BaseFont.CreateFont("TIMCYR.TTF", BaseFont.IDENTITY_H,
+            BaseFont baseFont = BaseFont.CreateFont("D://ФИСТ ИСЭбд/ISbd-21_Kurilo_D.S.-CSharp-2semester/TIMCYR.TTF", BaseFont.IDENTITY_H,
            BaseFont.NOT_EMBEDDED);
             //вставляем заголовок
             var phraseTitle = new Phrase("Заказы клиентов",
