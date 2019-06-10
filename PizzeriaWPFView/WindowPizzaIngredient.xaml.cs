@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using PizzeriaServiceDAL.BindingModel;
 using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceDAL.ViewModel;
-using Unity;
+
 
 namespace PizzeriaWPFView
 {
@@ -23,20 +23,16 @@ namespace PizzeriaWPFView
     /// </summary>
     public partial class WindowPizzaIngredient : Window
     {
-        [Dependency]
-                public IUnityContainer Container { get; set; }
         public PizzaIngredientViewModel Model
         {
             set { model = value; }
             get { return model; }
         }
-        private readonly IIngredientService service;
         private PizzaIngredientViewModel model;
 
-        public WindowPizzaIngredient(IIngredientService service)
+        public WindowPizzaIngredient()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         
@@ -90,7 +86,7 @@ namespace PizzeriaWPFView
         {
             try
             {
-                List<IngredientViewModel> list = service.GetList();
+                List<IngredientViewModel> list = APICustomer.GetRequest<List<IngredientViewModel>>("api/Ingredient/GetList");
                 if (list != null)
                 {
                     comboBoxIngredient.DisplayMemberPath = "IngredientName";

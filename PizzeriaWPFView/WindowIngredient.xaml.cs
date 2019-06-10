@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using PizzeriaServiceDAL.BindingModel;
 using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceDAL.ViewModel;
-using Unity;
+
 
 namespace PizzeriaWPFView
 {
@@ -23,16 +23,12 @@ namespace PizzeriaWPFView
     /// </summary>
     public partial class WindowIngredient : Window
     {
-        [Dependency]
-                public IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IIngredientService service;
         private int? id;
 
-        public WindowIngredient(IIngredientService service)
+        public WindowIngredient()
         {
             InitializeComponent();
-            this.service = service;
         }
 
 
@@ -42,7 +38,7 @@ namespace PizzeriaWPFView
             {
                 try
                 {
-                    IngredientViewModel view = service.GetElement(id.Value);
+                    IngredientViewModel view = APICustomer.GetRequest<IngredientViewModel>("api/Ingredient/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxName.Text = view.IngredientName;
@@ -67,18 +63,20 @@ namespace PizzeriaWPFView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new IngredientBindingModel
-                    {
-                        Id = id.Value,
-                        IngredientName = textBoxName.Text
+                    APICustomer.PostRequest<IngredientBindingModel,
+                  bool>("api/Ingredient/UpdElement", new IngredientBindingModel
+                  {
+                      Id = id.Value,
+                      IngredientName = textBoxName.Text
                     });
                 }
                 else
                 {
-                    service.AddElement(new IngredientBindingModel
-                    {
-                        IngredientName = textBoxName.Text
-                    });
+                    APICustomer.PostRequest<IngredientBindingModel,
+                  bool>("api/Ingredient/AddElement", new IngredientBindingModel
+                  {
+                      IngredientName = textBoxName.Text
+                  });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButton.OK, MessageBoxImage.Information);
