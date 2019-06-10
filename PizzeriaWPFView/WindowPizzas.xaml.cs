@@ -23,14 +23,10 @@ namespace PizzeriaWPFView
     /// </summary>
     public partial class WindowPizzas : Window
     {
-        [Dependency]
-                public IUnityContainer Container { get; set; }
-        private readonly IPizzaService service;
 
-        public WindowPizzas(IPizzaService service)
+        public WindowPizzas()
         {
             InitializeComponent();
-            this.service = service;
         }
 
 
@@ -43,7 +39,7 @@ namespace PizzeriaWPFView
         {
             try
             {
-                List<PizzaViewModel> list = service.GetList();
+                List<PizzaViewModel> list = APICustomer.GetRequest<List<PizzaViewModel>>("api/Pizza/GetList");
                 if (list != null)
                 {
                    dataGridView.ItemsSource = list;
@@ -60,7 +56,7 @@ namespace PizzeriaWPFView
         }
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowPizza>();
+            var form = new WindowPizza();
             if (form.ShowDialog() == true)
             {
                 LoadData();
@@ -70,7 +66,7 @@ namespace PizzeriaWPFView
         {
             if (dataGridView.SelectedCells.Count >= 1)
             {
-                var form = Container.Resolve<WindowPizza>();
+                var form = new WindowPizza();
                 form.Id = (dataGridView.SelectedItems[0] as PizzaViewModel).Id;
                 if (form.ShowDialog() == true)
                 {
@@ -88,7 +84,7 @@ namespace PizzeriaWPFView
                     int id = Convert.ToInt32(dataGridView.SelectedCells[0].Item);
                     try
                     {
-                        service.DelElement(id);
+                        APICustomer.PostRequest<PizzaBindingModel, bool>("api/Pizza/DelElement", new PizzaBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

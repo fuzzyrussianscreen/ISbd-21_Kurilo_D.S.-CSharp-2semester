@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using PizzeriaServiceDAL.BindingModel;
 using PizzeriaServiceDAL.Interfaces;
+using PizzeriaServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,21 +24,17 @@ namespace PizzeriaWPFView
     /// </summary>
     public partial class WindowStorageLoad : Window
     {
-        [Dependency]
-        public IUnityContainer Container { get; set; }
-        private readonly IReptService service;
 
-        public WindowStorageLoad(IReptService service)
+        public WindowStorageLoad()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormStoragesLoad_Load(object sender, RoutedEventArgs e)
         {
             try
             {
-                var dict = service.GetStoragesLoad();
+                List<StoragesLoadViewModel> dict = APICustomer.GetRequest<List<StoragesLoadViewModel>>("api/Main/GetStoragesLoad");
                 if (dict != null)
                 {
                     dataGridView.Items.Clear();
@@ -69,7 +66,7 @@ namespace PizzeriaWPFView
             {
                 try
                 {
-                    service.SaveStoragesLoad(new ReptBindingModel
+                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Main/SaveStoragesLoad", new ReptBindingModel
                     {
                         FileName = sfd.FileName
                     });

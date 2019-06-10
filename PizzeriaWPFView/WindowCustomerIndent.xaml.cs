@@ -17,6 +17,7 @@ using System;
 using Unity;
 using Microsoft.Reporting.WinForms;
 using System.Diagnostics;
+using PizzeriaServiceDAL.ViewModel;
 
 namespace PizzeriaWPFView
 {
@@ -26,14 +27,9 @@ namespace PizzeriaWPFView
     public partial class WindowCustomerIndent : Window
     {
 
-        [Dependency]
-        public IUnityContainer Container { get; set; }
-        private readonly IReptService service;
-
-        public WindowCustomerIndent(IReptService service)
+        public WindowCustomerIndent()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void buttonMake_Click(object sender, RoutedEventArgs e)
@@ -47,14 +43,15 @@ namespace PizzeriaWPFView
             try
             {
 
-                var dataSource = service.GetCustomerIndents(new ReptBindingModel
+                List<CustomerIndentViewModel> response = APICustomer.PostRequest<ReptBindingModel,
+                List<CustomerIndentViewModel>>("api/Rept/GetCustomerIndents", new ReptBindingModel
                 {
                     DateFrom = dateTimePickerFrom.SelectedDate.Value,
                     DateTo = dateTimePickerTo.SelectedDate.Value
                 });
 
                 ReportDataSource source = new ReportDataSource("DataSetOrders",
-               dataSource);
+               response);
                 reportViewer.LocalReport.DataSources.Add(source);
 
                 reportViewer.LocalReport.ReportPath = "Rept.rdlc";
@@ -90,7 +87,7 @@ namespace PizzeriaWPFView
             {
                 try
                 {
-                    service.SaveCustomerIndents(new ReptBindingModel
+                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Rept/SaveCustomerOrders", new ReptBindingModel
                     {
                         FileName = sfd.FileName,
                         DateFrom = dateTimePickerFrom.SelectedDate.Value,

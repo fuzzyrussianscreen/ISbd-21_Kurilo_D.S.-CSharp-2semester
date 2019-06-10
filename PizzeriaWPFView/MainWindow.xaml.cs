@@ -25,23 +25,17 @@ namespace PizzeriaWPFView
     /// </summary>
     public partial class MainWindow : Window
     {
-        [Dependency]
-        public  IUnityContainer Container { get; set; }
-        private readonly IMainService service;
-        private IReptService reptService;
 
-        public MainWindow(IMainService service, IReptService reptService)
+        public MainWindow()
         {
             InitializeComponent();
-            this.service = service;
-            this.reptService = reptService;
         }
 
         private void LoadData()
         {
             try
             {
-                List<IndentViewModel> list = service.GetList();
+                List<IndentViewModel> list = APICustomer.GetRequest<List<IndentViewModel>>("api/Main/GetList");
                 if (list != null)
                 {
                    dataGridView.ItemsSource = list;
@@ -59,22 +53,22 @@ namespace PizzeriaWPFView
         }
         private void клиентыToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowCustomers>();
+            var form = new WindowCustomers();
             form.ShowDialog();
         }
         private void компонентыToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowIngredients>();
+            var form = new WindowIngredients();
             form.ShowDialog();
         }
         private void изделияToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowPizzas>();
+            var form = new WindowPizzas();
             form.ShowDialog();
         }
         private void buttonCreateIndent_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowCreateIndent>();
+            var form = new WindowCreateIndent();
             form.ShowDialog();
             LoadData();
         }
@@ -85,7 +79,7 @@ namespace PizzeriaWPFView
                 int id = (dataGridView.SelectedCells[0].Item as IndentViewModel).Id;
                 try
                 {
-                    service.TakeOrderInWork(new IndentBindingModel { Id = id });
+                    APICustomer.PostRequest<IndentBindingModel, bool>("api/Main/TakeIndentInWork", new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -102,7 +96,7 @@ namespace PizzeriaWPFView
                 int id = (dataGridView.SelectedCells[0].Item as IndentViewModel).Id;
                 try
                 {
-                    service.FinishOrder(new IndentBindingModel { Id = id });
+                    APICustomer.PostRequest<IndentBindingModel, bool>("api/Main/FinishIndent", new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -119,7 +113,7 @@ namespace PizzeriaWPFView
                 int id = (dataGridView.SelectedCells[0].Item as IndentViewModel).Id;
                 try
                 {
-                    service.PayOrder(new IndentBindingModel { Id = id });
+                    APICustomer.PostRequest<IndentBindingModel, bool>("api/Main/PayIndent", new IndentBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -137,14 +131,14 @@ namespace PizzeriaWPFView
 
         private void складыToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowStorages>();
+            var form = new WindowStorages();
             form.ShowDialog();
         }
         
 
         private void пополнитьСкладToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowPutOnStorage>();
+            var form = new WindowPutOnStorage();
             form.ShowDialog();
         }
 
@@ -158,7 +152,7 @@ namespace PizzeriaWPFView
             {
                 try
                 {
-                    reptService.SavePizzaPrice(new ReptBindingModel
+                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Main/SavePizzaIndent", new ReptBindingModel
                     {
                         FileName = sfd.FileName
                     });
@@ -175,13 +169,13 @@ namespace PizzeriaWPFView
         
         private void заказыКлиентовToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowCustomerIndent>();
+            var form = new WindowCustomerIndent();
             form.ShowDialog();
         }
 
         private void загруженностьСкладовToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowStorageLoad>();
+            var form = new WindowStorageLoad();
             form.ShowDialog();
         }
     }

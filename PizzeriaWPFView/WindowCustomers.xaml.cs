@@ -23,14 +23,10 @@ namespace PizzeriaWPFView
     /// </summary>
     public partial class WindowCustomers : Window
     {
-        [Dependency]
-        public IUnityContainer Container { get; set; }
-        private readonly ICustomerService service;
 
-        public WindowCustomers(ICustomerService service)
+        public WindowCustomers()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void WindowCustomers_Load(object sender, RoutedEventArgs e)
@@ -42,7 +38,7 @@ namespace PizzeriaWPFView
         {
             try
             {
-                List<CustomerViewModel> list = service.GetList();
+                List<CustomerViewModel> list = APICustomer.GetRequest<List<CustomerViewModel>>("api/Customer/GetList");
                 if ((list != null)&&(list.Capacity != 0))
                 {
                     dataGridView.ItemsSource = list;
@@ -58,7 +54,7 @@ namespace PizzeriaWPFView
         }
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowCustomer>();
+            var form = new WindowCustomer();
             if (form.ShowDialog() == true)
             {
                 LoadData();
@@ -68,7 +64,7 @@ namespace PizzeriaWPFView
         {
             if (dataGridView.SelectedCells.Count >= 1)
             {
-                var form = Container.Resolve<WindowCustomer>();
+                var form = new WindowCustomer();
                 form.Id = (dataGridView.SelectedItems[0] as CustomerViewModel).Id;
                 if (form.ShowDialog() == true)
                 {
@@ -86,7 +82,7 @@ namespace PizzeriaWPFView
                     int id = Convert.ToInt32(dataGridView.SelectedCells[0].Item);
                     try
                     {
-                        service.DelElement(id);
+                        APICustomer.PostRequest<CustomerBindingModel, bool>("api/Customer/DelElement", new CustomerBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

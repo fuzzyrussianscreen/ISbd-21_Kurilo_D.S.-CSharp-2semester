@@ -23,16 +23,12 @@ namespace PizzeriaWPFView
     /// </summary>
     public partial class WindowCustomer : Window
     {
-        [Dependency]
-        public IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly ICustomerService service;
         private int? id;
 
-        public WindowCustomer(ICustomerService service)
+        public WindowCustomer()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void WindowClient_Load(object sender, RoutedEventArgs e)
@@ -41,11 +37,8 @@ namespace PizzeriaWPFView
             {
                 try
                 {
-                    CustomerViewModel view = service.GetElement(id.Value);
-                    if (view != null)
-                    {
-                        textBoxFIO.Text = view.CustomerFIO;
-                    }
+                    CustomerViewModel customer = APICustomer.GetRequest<CustomerViewModel>("api/Customer/Get/" + id.Value);
+                    textBoxFIO.Text = customer.CustomerFIO;
                 }
                 catch (Exception ex)
                 {
@@ -66,7 +59,8 @@ namespace PizzeriaWPFView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new CustomerBindingModel
+                    APICustomer.PostRequest<CustomerBindingModel,
+                    bool>("api/Customer/UpdElement", new CustomerBindingModel
                     {
                         Id = id.Value,
                         CustomerFIO = textBoxFIO.Text
@@ -74,7 +68,8 @@ namespace PizzeriaWPFView
                 }
                 else
                 {
-                    service.AddElement(new CustomerBindingModel
+                    APICustomer.PostRequest<CustomerBindingModel,
+                    bool>("api/Customer/AddElement", new CustomerBindingModel
                     {
                         CustomerFIO = textBoxFIO.Text
                     });

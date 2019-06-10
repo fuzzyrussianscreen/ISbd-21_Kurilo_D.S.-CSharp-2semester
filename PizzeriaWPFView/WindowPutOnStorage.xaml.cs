@@ -23,33 +23,24 @@ namespace PizzeriaWPFView
     /// </summary>
     public partial class WindowPutOnStorage : Window
     {
-        [Dependency]
-        public IUnityContainer Container { get; set; }
-        private readonly IStorageService serviceS;
-        private readonly IIngredientService serviceC;
-        private readonly IMainService serviceM;
-
-        public WindowPutOnStorage(IStorageService serviceS, IIngredientService serviceC,
-       IMainService serviceM)
+        
+        public WindowPutOnStorage()
         {
             InitializeComponent();
-            this.serviceS = serviceS;
-            this.serviceC = serviceC;
-            this.serviceM = serviceM;
         }
 
         private void FormPutOnStorage_Load(object sender, RoutedEventArgs e)
         {
             try
             {
-                List<IngredientViewModel> listC = serviceC.GetList();
+                List<IngredientViewModel> listC = APICustomer.GetRequest<List<IngredientViewModel>>("api/Ingredient/GetList");
                 if (listC != null)
                 {
                     comboBoxIngredient.DisplayMemberPath = "IngredientName";
                     comboBoxIngredient.ItemsSource = listC;
                     comboBoxIngredient.SelectedItem = null;
                 }
-                List<StorageViewModel> listS = serviceS.GetList();
+                List<StorageViewModel> listS = APICustomer.GetRequest<List<StorageViewModel>>("api/Storage/GetList");
                 if (listS != null)
                 {
                     comboBoxStorage.DisplayMemberPath = "StorageName";
@@ -85,7 +76,7 @@ namespace PizzeriaWPFView
             }
             try
             {
-                serviceM.PutIngredientOnStorage(new StorageIngredientBindingModel
+                APICustomer.PostRequest<StorageIngredientBindingModel, bool>("api/Main/PutIngredientOnStorage", new StorageIngredientBindingModel
                 {
                     IngredientId = (comboBoxIngredient.SelectedValue as IngredientViewModel).Id,
                     StorageId = (comboBoxStorage.SelectedValue as StorageViewModel).Id,

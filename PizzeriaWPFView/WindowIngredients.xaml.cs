@@ -23,14 +23,10 @@ namespace PizzeriaWPFView
     /// </summary>
     public partial class WindowIngredients : Window
     {
-        [Dependency]
-                public IUnityContainer Container { get; set; }
-        private readonly IIngredientService service;
 
-        public WindowIngredients(IIngredientService service)
+        public WindowIngredients()
         {
             InitializeComponent();
-            this.service = service;
         }
 
 
@@ -43,7 +39,7 @@ namespace PizzeriaWPFView
         {
             try
             {
-                List<IngredientViewModel> list = service.GetList();
+                List<IngredientViewModel> list = APICustomer.GetRequest<List<IngredientViewModel>>("api/Ingredient/GetList");
                 if (list != null)
                 {
                    dataGridView.ItemsSource = list;
@@ -59,7 +55,7 @@ namespace PizzeriaWPFView
         }
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowIngredient>();
+            var form = new WindowIngredient();
             if (form.ShowDialog() == true)
             {
                 LoadData();
@@ -69,7 +65,7 @@ namespace PizzeriaWPFView
         {
             if (dataGridView.SelectedCells.Count >= 1)
             {
-                var form = Container.Resolve<WindowIngredient>();
+                var form = new WindowIngredient();
                 form.Id = (dataGridView.SelectedItems[0] as IngredientViewModel).Id;
                 if (form.ShowDialog() == true)
                 {
@@ -87,7 +83,7 @@ namespace PizzeriaWPFView
                     int id = Convert.ToInt32(dataGridView.SelectedCells[0].Item);
                     try
                     {
-                        service.DelElement(id);
+                        APICustomer.PostRequest<IngredientBindingModel, bool>("api/Ingredient/DelElement", new IngredientBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

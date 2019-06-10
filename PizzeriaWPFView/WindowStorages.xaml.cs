@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Unity;
 using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceDAL.ViewModel;
+using PizzeriaServiceDAL.BindingModel;
 
 namespace PizzeriaWPFView
 {
@@ -23,16 +24,10 @@ namespace PizzeriaWPFView
     /// 
     public partial class WindowStorages : Window
     {
-
-        [Dependency]
-        public IUnityContainer Container { get; set; }
-
-        private readonly IStorageService service;
-
-        public WindowStorages(IStorageService service)
+        
+        public WindowStorages()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormStorages_Load(object sender, RoutedEventArgs e)
@@ -44,7 +39,7 @@ namespace PizzeriaWPFView
         {
             try
             {
-                List<StorageViewModel> list = service.GetList();
+                List<StorageViewModel> list = APICustomer.GetRequest<List<StorageViewModel>>("api/Storage/GetList");
                 if (list != null)
                 {
                     dataGridView.ItemsSource = list;
@@ -61,7 +56,7 @@ namespace PizzeriaWPFView
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<WindowStorage>();
+            var form = new WindowStorage();
             if (form.ShowDialog() == true)
             {
                 LoadData();
@@ -71,7 +66,7 @@ namespace PizzeriaWPFView
         {
             if (dataGridView.SelectedCells.Count >= 1)
             {
-                var form = Container.Resolve<WindowStorage>();
+                var form = new WindowStorage();
                 form.Id = (dataGridView.SelectedItems[0] as StorageViewModel).Id;
                 if (form.ShowDialog() == true)
                 {
@@ -89,7 +84,7 @@ namespace PizzeriaWPFView
                     int id = Convert.ToInt32(dataGridView.SelectedCells[0].Item);
                     try
                     {
-                        service.DelElement(id);
+                        APICustomer.PostRequest<StorageBindingModel, bool>("api/Storage/DelElement", new StorageBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
