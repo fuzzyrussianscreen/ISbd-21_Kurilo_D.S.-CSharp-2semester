@@ -113,6 +113,18 @@
     <Compile Include="FormIngredient.Designer.cs">
       <DependentUpon>FormIngredient.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPerformer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPerformer.Designer.cs">
+      <DependentUpon>FormPerformer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPerformers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPerformers.Designer.cs">
+      <DependentUpon>FormPerformers.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPizzaIngredient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +199,12 @@
     <EmbeddedResource Include="FormIngredient.resx">
       <DependentUpon>FormIngredient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPerformer.resx">
+      <DependentUpon>FormPerformer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPerformers.resx">
+      <DependentUpon>FormPerformers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPizzaIngredient.resx">
       <DependentUpon>FormPizzaIngredient.cs</DependentUpon>
     </EmbeddedResource>
@@ -244,6 +262,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PizzeriaRestApi\PizzeriaRestApi.csproj">
+      <Project>{19c5e72f-191d-4493-b7bd-18853528b86c}</Project>
+      <Name>PizzeriaRestApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PizzeriaServiceDAL\PizzeriaServiceDAL.csproj">
       <Project>{E29AD7AA-E804-4F28-820F-5F727D9757DE}</Project>
       <Name>PizzeriaServiceDAL</Name>

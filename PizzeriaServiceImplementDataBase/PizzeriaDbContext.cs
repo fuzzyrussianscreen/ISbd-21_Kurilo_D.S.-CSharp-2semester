@@ -19,6 +19,7 @@ namespace PizzeriaServiceImplementDataBase
            System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Performer> Performers { get; set; }
         public virtual DbSet<Ingredient> Ingredients { get; set; }
         public virtual DbSet<Indent> Indents { get; set; }
         public virtual DbSet<Pizza> Pizzas { get; set; }

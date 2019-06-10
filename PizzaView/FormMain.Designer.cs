@@ -34,15 +34,15 @@
             this.ингредиентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.видыПиццToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.складыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сотрудникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.пополнитьСкладToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчётыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.менюПиццToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загруженностьСкладовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.заказыКлиентовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.запускРаботToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonCreateIndent = new System.Windows.Forms.Button();
-            this.buttonTakeIndentInWork = new System.Windows.Forms.Button();
-            this.buttonIndentReady = new System.Windows.Forms.Button();
             this.buttonPayOrder = new System.Windows.Forms.Button();
             this.buttonRef = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
@@ -55,10 +55,11 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.инфоToolStripMenuItem,
             this.пополнитьСкладToolStripMenuItem,
-            this.отчётыToolStripMenuItem});
+            this.отчётыToolStripMenuItem,
+            this.запускРаботToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1383, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1490, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -68,7 +69,8 @@
             this.клиентыToolStripMenuItem,
             this.ингредиентыToolStripMenuItem,
             this.видыПиццToolStripMenuItem,
-            this.складыToolStripMenuItem});
+            this.складыToolStripMenuItem,
+            this.сотрудникиToolStripMenuItem});
             this.инфоToolStripMenuItem.Name = "инфоToolStripMenuItem";
             this.инфоToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
             this.инфоToolStripMenuItem.Text = "Инфо";
@@ -100,6 +102,13 @@
             this.складыToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.складыToolStripMenuItem.Text = "Склады";
             this.складыToolStripMenuItem.Click += new System.EventHandler(this.складыToolStripMenuItem_Click);
+            // 
+            // сотрудникиToolStripMenuItem
+            // 
+            this.сотрудникиToolStripMenuItem.Name = "сотрудникиToolStripMenuItem";
+            this.сотрудникиToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.сотрудникиToolStripMenuItem.Text = "Сотрудники";
+            this.сотрудникиToolStripMenuItem.Click += new System.EventHandler(this.сотрудникиToolStripMenuItem_Click);
             // 
             // пополнитьСкладToolStripMenuItem
             // 
@@ -139,18 +148,25 @@
             this.заказыКлиентовToolStripMenuItem.Text = "Заказы клиентов";
             this.заказыКлиентовToolStripMenuItem.Click += new System.EventHandler(this.заказыКлиентовToolStripMenuItem_Click);
             // 
+            // запускРаботToolStripMenuItem
+            // 
+            this.запускРаботToolStripMenuItem.Name = "запускРаботToolStripMenuItem";
+            this.запускРаботToolStripMenuItem.Size = new System.Drawing.Size(112, 24);
+            this.запускРаботToolStripMenuItem.Text = "Запуск работ";
+            this.запускРаботToolStripMenuItem.Click += new System.EventHandler(this.запускРаботToolStripMenuItem_Click);
+            // 
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(12, 31);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(1029, 434);
+            this.dataGridView.Size = new System.Drawing.Size(1223, 434);
             this.dataGridView.TabIndex = 1;
             // 
             // buttonCreateIndent
             // 
-            this.buttonCreateIndent.Location = new System.Drawing.Point(1128, 77);
+            this.buttonCreateIndent.Location = new System.Drawing.Point(1267, 86);
             this.buttonCreateIndent.Name = "buttonCreateIndent";
             this.buttonCreateIndent.Size = new System.Drawing.Size(211, 37);
             this.buttonCreateIndent.TabIndex = 2;
@@ -158,29 +174,9 @@
             this.buttonCreateIndent.UseVisualStyleBackColor = true;
             this.buttonCreateIndent.Click += new System.EventHandler(this.buttonCreateIndent_Click);
             // 
-            // buttonTakeIndentInWork
-            // 
-            this.buttonTakeIndentInWork.Location = new System.Drawing.Point(1128, 120);
-            this.buttonTakeIndentInWork.Name = "buttonTakeIndentInWork";
-            this.buttonTakeIndentInWork.Size = new System.Drawing.Size(211, 37);
-            this.buttonTakeIndentInWork.TabIndex = 3;
-            this.buttonTakeIndentInWork.Text = "Отправить на выполнение";
-            this.buttonTakeIndentInWork.UseVisualStyleBackColor = true;
-            this.buttonTakeIndentInWork.Click += new System.EventHandler(this.buttonTakeIndentInWork_Click);
-            // 
-            // buttonIndentReady
-            // 
-            this.buttonIndentReady.Location = new System.Drawing.Point(1128, 163);
-            this.buttonIndentReady.Name = "buttonIndentReady";
-            this.buttonIndentReady.Size = new System.Drawing.Size(211, 37);
-            this.buttonIndentReady.TabIndex = 4;
-            this.buttonIndentReady.Text = "Заказ готов";
-            this.buttonIndentReady.UseVisualStyleBackColor = true;
-            this.buttonIndentReady.Click += new System.EventHandler(this.buttonIndentReady_Click);
-            // 
             // buttonPayOrder
             // 
-            this.buttonPayOrder.Location = new System.Drawing.Point(1128, 206);
+            this.buttonPayOrder.Location = new System.Drawing.Point(1267, 215);
             this.buttonPayOrder.Name = "buttonPayOrder";
             this.buttonPayOrder.Size = new System.Drawing.Size(211, 37);
             this.buttonPayOrder.TabIndex = 5;
@@ -190,7 +186,7 @@
             // 
             // buttonRef
             // 
-            this.buttonRef.Location = new System.Drawing.Point(1128, 249);
+            this.buttonRef.Location = new System.Drawing.Point(1267, 258);
             this.buttonRef.Name = "buttonRef";
             this.buttonRef.Size = new System.Drawing.Size(211, 37);
             this.buttonRef.TabIndex = 6;
@@ -202,11 +198,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1383, 477);
+            this.ClientSize = new System.Drawing.Size(1490, 477);
             this.Controls.Add(this.buttonRef);
             this.Controls.Add(this.buttonPayOrder);
-            this.Controls.Add(this.buttonIndentReady);
-            this.Controls.Add(this.buttonTakeIndentInWork);
             this.Controls.Add(this.buttonCreateIndent);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.menuStrip1);
@@ -230,8 +224,6 @@
         private System.Windows.Forms.ToolStripMenuItem видыПиццToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonCreateIndent;
-        private System.Windows.Forms.Button buttonTakeIndentInWork;
-        private System.Windows.Forms.Button buttonIndentReady;
         private System.Windows.Forms.Button buttonPayOrder;
         private System.Windows.Forms.Button buttonRef;
         private System.Windows.Forms.ToolStripMenuItem складыToolStripMenuItem;
@@ -240,6 +232,8 @@
         private System.Windows.Forms.ToolStripMenuItem менюПиццToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem загруженностьСкладовToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem заказыКлиентовToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сотрудникиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem запускРаботToolStripMenuItem;
     }
 }
 

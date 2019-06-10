@@ -3,7 +3,7 @@ namespace PizzeriaServiceImplementDataBase.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FirstMigration : DbMigration
+    public partial class First : DbMigration
     {
         public override void Up()
         {
@@ -22,6 +22,7 @@ namespace PizzeriaServiceImplementDataBase.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         CustomerId = c.Int(nullable: false),
+                        PerformerId = c.Int(),
                         PizzaId = c.Int(nullable: false),
                         Count = c.Int(nullable: false),
                         Sum = c.Decimal(nullable: false, precision: 18, scale: 2),
@@ -31,9 +32,20 @@ namespace PizzeriaServiceImplementDataBase.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Customers", t => t.CustomerId, cascadeDelete: true)
+                .ForeignKey("dbo.Performers", t => t.PerformerId)
                 .ForeignKey("dbo.Pizzas", t => t.PizzaId, cascadeDelete: true)
                 .Index(t => t.CustomerId)
+                .Index(t => t.PerformerId)
                 .Index(t => t.PizzaId);
+            
+            CreateTable(
+                "dbo.Performers",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        PerformerFIO = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Pizzas",
@@ -102,18 +114,21 @@ namespace PizzeriaServiceImplementDataBase.Migrations
             DropForeignKey("dbo.StorageIngredients", "IngredientId", "dbo.Ingredients");
             DropForeignKey("dbo.PizzaIngredients", "IngredientId", "dbo.Ingredients");
             DropForeignKey("dbo.Indents", "PizzaId", "dbo.Pizzas");
+            DropForeignKey("dbo.Indents", "PerformerId", "dbo.Performers");
             DropForeignKey("dbo.Indents", "CustomerId", "dbo.Customers");
             DropIndex("dbo.StorageIngredients", new[] { "IngredientId" });
             DropIndex("dbo.StorageIngredients", new[] { "StorageId" });
             DropIndex("dbo.PizzaIngredients", new[] { "IngredientId" });
             DropIndex("dbo.PizzaIngredients", new[] { "PizzaId" });
             DropIndex("dbo.Indents", new[] { "PizzaId" });
+            DropIndex("dbo.Indents", new[] { "PerformerId" });
             DropIndex("dbo.Indents", new[] { "CustomerId" });
             DropTable("dbo.Storages");
             DropTable("dbo.StorageIngredients");
             DropTable("dbo.Ingredients");
             DropTable("dbo.PizzaIngredients");
             DropTable("dbo.Pizzas");
+            DropTable("dbo.Performers");
             DropTable("dbo.Indents");
             DropTable("dbo.Customers");
         }
