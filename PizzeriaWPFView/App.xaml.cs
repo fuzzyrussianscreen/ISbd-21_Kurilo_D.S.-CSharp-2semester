@@ -31,7 +31,7 @@ namespace PizzeriaWPFView
         {
             App app = new App();
             var container = BuildUnityContainer();
-            app.Run(container.Resolve <MainWindow>());
+            app.Run(container.Resolve<MainWindow>());
 
         }
 
@@ -50,6 +50,9 @@ namespace PizzeriaWPFView
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IStorageService, StorageServiceDB>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IReptService, ReptServiceDB>(new
+           HierarchicalLifetimeManager());
+
             return currentContainer;
         }
     }

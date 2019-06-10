@@ -1,4 +1,5 @@
-﻿using PizzeriaServiceDAL.BindingModel;
+﻿using Microsoft.Win32;
+using PizzeriaServiceDAL.BindingModel;
 using PizzeriaServiceDAL.Interfaces;
 using PizzeriaServiceDAL.ViewModel;
 using System;
@@ -27,11 +28,13 @@ namespace PizzeriaWPFView
         [Dependency]
         public  IUnityContainer Container { get; set; }
         private readonly IMainService service;
+        private IReptService reptService;
 
-        public MainWindow(IMainService service)
+        public MainWindow(IMainService service, IReptService reptService)
         {
             InitializeComponent();
             this.service = service;
+            this.reptService = reptService;
         }
 
         private void LoadData()
@@ -142,6 +145,43 @@ namespace PizzeriaWPFView
         private void пополнитьСкладToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var form = Container.Resolve<WindowPutOnStorage>();
+            form.ShowDialog();
+        }
+
+        private void прайсПиццToolStripMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "doc|*.doc|docx|*.docx"
+            };
+            if (sfd.ShowDialog() == true)
+            {
+                try
+                {
+                    reptService.SavePizzaPrice(new ReptBindingModel
+                    {
+                        FileName = sfd.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                   MessageBoxImage.Error);
+                }
+            }
+        }
+        
+        private void заказыКлиентовToolStripMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WindowCustomerIndent>();
+            form.ShowDialog();
+        }
+
+        private void загруженностьСкладовToolStripMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WindowStorageLoad>();
             form.ShowDialog();
         }
     }

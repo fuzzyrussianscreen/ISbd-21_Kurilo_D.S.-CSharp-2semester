@@ -74,7 +74,7 @@ IMainService serviceM)
                     int id = (comboBoxPizza.SelectedValue as PizzaViewModel).Id;
                     PizzaViewModel product = serviceP.GetElement(id);
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * product.Price).ToString();
+                    textBoxSum.Text = Convert.ToInt32(count * product.Price).ToString();
                 }
                 catch (Exception ex)
                 {

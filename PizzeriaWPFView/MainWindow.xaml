@@ -13,7 +13,7 @@
         <Button x:Name="buttonIndentReady" Content="Заказ готов" HorizontalAlignment="Left" Height="56" Margin="947,174,0,0" VerticalAlignment="Top" Width="206" Click="buttonIndentReady_Click"/>
         <Button x:Name="buttonPayOrder" Content="Заказ оплачен" HorizontalAlignment="Left" Height="56" Margin="947,235,0,0" VerticalAlignment="Top" Width="206" RenderTransformOrigin="0.536,2.173" Click="buttonPayOrder_Click"/>
         <Button x:Name="buttonRef" Content="Обновить" HorizontalAlignment="Left" Height="56" Margin="947,296,0,0" VerticalAlignment="Top" Width="206" Click="buttonRef_Click"/>
-        <Menu x:Name="menu" HorizontalAlignment="Left" Height="22" Margin="10,10,0,0" VerticalAlignment="Top" Width="329">
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="22" Margin="10,10,0,0" VerticalAlignment="Top" Width="543">
             <MenuItem Header="Info" Width="61" Height="22">
                 <MenuItem Header="Клиенты" HorizontalAlignment="Left" Width="139.2" Click="клиентыToolStripMenuItem_Click"/>
                 <MenuItem Header="Ингредиенты" HorizontalAlignment="Left" Width="164" Margin="0,0,-24.8,0" Click="компонентыToolStripMenuItem_Click"/>
@@ -21,6 +21,11 @@
                 <MenuItem x:Name="Storage" Header="Склады" HorizontalAlignment="Left" Width="139.2" Click="складыToolStripMenuItem_Click"/>
             </MenuItem>
             <MenuItem x:Name="PutOnStroage" Header="Пополнить склад" Click="пополнитьСкладToolStripMenuItem_Click"/>
+            <MenuItem Header="Отчеты" Width="134">
+                <MenuItem Header="Прайс пицц" HorizontalAlignment="Left" Width="174" Click="прайсПиццToolStripMenuItem_Click"/>
+                <MenuItem Header="Загруженность складов" Margin="0,0,-25.8,0" HorizontalAlignment="Left" Width="229" Click="загруженностьСкладовToolStripMenuItem_Click"/>
+                <MenuItem Header="Заказы клиентов" HorizontalAlignment="Left" Width="180" Click="заказыКлиентовToolStripMenuItem_Click"/>
+            </MenuItem>
         </Menu>
 
     </Grid>
