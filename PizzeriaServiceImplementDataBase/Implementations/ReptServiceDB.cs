@@ -378,7 +378,7 @@ namespace PizzeriaServiceImplementDataBase.Implementations
                 Border = 0
             };
             table.AddCell(cell);
-            cell = new PdfPCell(new Phrase("", fontForCellBold))
+            cell = new PdfPCell(new Phrase("fgfgfg", fontForCellBold))
             {
                 Border = 0
             };

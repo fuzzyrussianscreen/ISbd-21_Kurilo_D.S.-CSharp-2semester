@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using PizzeriaServiceDAL.BindingModel;
 using PizzeriaServiceDAL.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +13,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System;
 using Unity;
+using Microsoft.Reporting.WinForms;
+using System.Diagnostics;
 
 namespace PizzeriaWPFView
 {
@@ -44,20 +46,26 @@ namespace PizzeriaWPFView
             }
             try
             {
-                ReportParameter parameter = new ReportParameter("ReportParameterPeriod",
-                "c " +
-               dateTimePickerFrom.SelectedDate.Value.ToShortDateString() +
-                " по " +
-               dateTimePickerTo.SelectedDate.Value.ToShortDateString());
-                reportViewer.LocalReport.SetParameters(parameter);
+
                 var dataSource = service.GetCustomerIndents(new ReptBindingModel
                 {
                     DateFrom = dateTimePickerFrom.SelectedDate.Value,
                     DateTo = dateTimePickerTo.SelectedDate.Value
                 });
-                ReportDataSource source = new ReportDataSource("DataSetIndent",
+
+                ReportDataSource source = new ReportDataSource("DataSetOrders",
                dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
+
+                reportViewer.LocalReport.ReportPath = "Rept.rdlc";
+
+                ReportParameter parameter = new ReportParameter("ReptParameterPeriod",
+                "c " +
+               dateTimePickerFrom.SelectedDate.Value.ToShortDateString() +
+                " по " +
+               dateTimePickerTo.SelectedDate.Value.ToShortDateString());
+                this.reportViewer.LocalReport.SetParameters(parameter);
+                
                 reportViewer.RefreshReport();
             }
             catch (Exception ex)
