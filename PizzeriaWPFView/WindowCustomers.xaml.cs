@@ -79,7 +79,7 @@ namespace PizzeriaWPFView
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo,
                MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    int id = Convert.ToInt32(dataGridView.SelectedCells[0].Item);
+                    int id = Convert.ToInt32((dataGridView.SelectedItems[0] as CustomerViewModel).Id);
                     try
                     {
                         APICustomer.PostRequest<CustomerBindingModel, bool>("api/Customer/DelElement", new CustomerBindingModel { Id = id });
