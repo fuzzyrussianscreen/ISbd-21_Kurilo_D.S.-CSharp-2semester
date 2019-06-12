@@ -16,5 +16,7 @@ namespace PizzeriaServiceDAL.ViewModel
         public string Status { get; set; }
         public string DateCreate { get; set; }
         public string DateImplement { get; set; }
+        public int? PerformerId { get; set; }
+        public string PerformerName { get; set; }
     }
 }

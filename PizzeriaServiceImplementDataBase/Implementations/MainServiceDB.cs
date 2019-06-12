@@ -40,7 +40,9 @@ namespace PizzeriaServiceImplementDataBase.Implementations
                 Count = rec.Count,
                 Sum = rec.Sum,
                 CustomerFIO = rec.Customer.CustomerFIO,
-                PizzaName = rec.Pizza.PizzaName
+                PizzaName = rec.Pizza.PizzaName,
+                PerformerId = rec.Performer.Id,
+                PerformerName = rec.Performer.PerformerFIO
             })
             .ToList();
             return result;
@@ -102,6 +104,7 @@ namespace PizzeriaServiceImplementDataBase.Implementations
                            pizzaIngredient.Ingredient.IngredientName + " требуется " + pizzaIngredient.Count + ", не хватает " + countOnStorages);
                         }
                     }
+                    element.PerformerId = model.PerformerId;
                     element.DateImplement = DateTime.Now;
                     element.Status = IndentStatus.Выполняется;
                     context.SaveChanges();
@@ -160,6 +163,19 @@ namespace PizzeriaServiceImplementDataBase.Implementations
                 });
             }
             context.SaveChanges();
+        }
+
+        public List<IndentViewModel> GetFreeIndents()
+        {
+            List<IndentViewModel> result = context.Indents
+            .Where(x => x.Status == IndentStatus.Принят || x.Status ==
+           IndentStatus.НедостаточноРесурсов)
+            .Select(rec => new IndentViewModel
+            {
+                Id = rec.Id
+            })
+            .ToList();
+            return result;
         }
     }
 }

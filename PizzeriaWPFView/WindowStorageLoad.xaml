@@ -9,9 +9,9 @@
     <Grid Loaded="FormStoragesLoad_Load">
         <DataGrid x:Name="dataGridView" HorizontalAlignment="Left" Height="378" Margin="31,77,0,0" VerticalAlignment="Top" Width="473">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Склад"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Компонент"/>
-                <DataGridTextColumn Header="Количество"/>
+                <DataGridTextColumn Header="Склад"  Binding="{Binding StorageName}"/>
+                <DataGridTextColumn Binding="{Binding Ingredientname}" ClipboardContentBinding="{x:Null}" Header="Компонент"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Count}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="button_save" Content="Сохранить в Excel" HorizontalAlignment="Left" Height="34" Margin="31,10,0,0" VerticalAlignment="Top" Width="132" Click="buttonSaveToExcel_Click"/>

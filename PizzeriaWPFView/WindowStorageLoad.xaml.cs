@@ -22,6 +22,16 @@ namespace PizzeriaWPFView
     /// <summary>
     /// Логика взаимодействия для WindowStorageLoad.xaml
     /// </summary>
+    /// 
+
+
+    public class Row
+    {
+        public String StorageName { get; set; }
+        public String Ingredientname { get; set; }
+        public String Count { get; set; }
+    }
+
     public partial class WindowStorageLoad : Window
     {
 
@@ -34,19 +44,19 @@ namespace PizzeriaWPFView
         {
             try
             {
-                List<StoragesLoadViewModel> dict = APICustomer.GetRequest<List<StoragesLoadViewModel>>("api/Main/GetStoragesLoad");
+                List<StoragesLoadViewModel> dict = APICustomer.GetRequest<List<StoragesLoadViewModel>>("api/Rept/GetStoragesLoad");
                 if (dict != null)
                 {
                     dataGridView.Items.Clear();
                     foreach (var elem in dict)
                     {
-                        dataGridView.Items.Add(new object[] { elem.StorageName, "", "" });
+                        dataGridView.Items.Add(new Row() { StorageName = elem.StorageName, Ingredientname = "", Count = "" });
                         foreach (var listElem in elem.Ingredients)
                         {
-                            dataGridView.Items.Add(new object[] { "", listElem.Item1, listElem.Item2 });
+                            dataGridView.Items.Add(new Row() { StorageName = "", Ingredientname = listElem.Item1.ToString(), Count = listElem.Item2.ToString() });
                         }
-                        dataGridView.Items.Add(new object[] { "Итого", "", elem.TotalCount });
-                        dataGridView.Items.Add(new object[] { });
+                        dataGridView.Items.Add(new Row() { StorageName = "Итого", Ingredientname = "", Count = elem.TotalCount.ToString() });
+                        dataGridView.Items.Add(new Row() { StorageName = "", Ingredientname = "", Count = "" });
                     }
                 }
             }
@@ -66,7 +76,7 @@ namespace PizzeriaWPFView
             {
                 try
                 {
-                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Main/SaveStoragesLoad", new ReptBindingModel
+                    APICustomer.PostRequest<ReptBindingModel, bool>("api/Rept/SaveStoragesLoad", new ReptBindingModel
                     {
                         FileName = sfd.FileName
                     });

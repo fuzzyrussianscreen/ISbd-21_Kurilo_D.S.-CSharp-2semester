@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PizzeriaWPFView"
         mc:Ignorable="d"
-        Title="Заказы" Height="632.348" Width="1216.054">
-    <Grid Margin="0,0,23.2,28.2">
+        Title="Заказы" Height="632.348" Width="1198.454">
+    <Grid Margin="0,0,27.2,28.4">
         <DataGrid x:Name="dataGridView" HorizontalAlignment="Left" Height="442" Margin="41,113,0,0" VerticalAlignment="Top" Width="869" SelectionMode="Single"/>
         <Button x:Name="buttonCreateIndent" Content="Создать заках" HorizontalAlignment="Left" Height="56" Margin="947,52,0,0" VerticalAlignment="Top" Width="206" Click="buttonCreateIndent_Click"/>
-        <Button x:Name="buttonTakeIndentInWork" Content="Отправит в работу" HorizontalAlignment="Left" Height="56" Margin="947,113,0,0" VerticalAlignment="Top" Width="206" Click="buttonTakeIndentInWork_Click"/>
-        <Button x:Name="buttonIndentReady" Content="Заказ готов" HorizontalAlignment="Left" Height="56" Margin="947,174,0,0" VerticalAlignment="Top" Width="206" Click="buttonIndentReady_Click"/>
+        <Button x:Name="buttonTakeIndentInWork" Content="Отправит в работу" HorizontalAlignment="Left" Height="56" Margin="947,113,0,0" VerticalAlignment="Top" Width="206" Click="buttonTakeIndentInWork_Click" Visibility="Collapsed"/>
+        <Button x:Name="buttonIndentReady" Content="Заказ готов" HorizontalAlignment="Left" Height="56" Margin="947,174,0,0" VerticalAlignment="Top" Width="206" Click="buttonIndentReady_Click" Visibility="Collapsed"/>
         <Button x:Name="buttonPayOrder" Content="Заказ оплачен" HorizontalAlignment="Left" Height="56" Margin="947,235,0,0" VerticalAlignment="Top" Width="206" RenderTransformOrigin="0.536,2.173" Click="buttonPayOrder_Click"/>
         <Button x:Name="buttonRef" Content="Обновить" HorizontalAlignment="Left" Height="56" Margin="947,296,0,0" VerticalAlignment="Top" Width="206" Click="buttonRef_Click"/>
         <Menu x:Name="menu" HorizontalAlignment="Left" Height="22" Margin="10,10,0,0" VerticalAlignment="Top" Width="543">
@@ -19,6 +19,7 @@
                 <MenuItem Header="Ингредиенты" HorizontalAlignment="Left" Width="164" Margin="0,0,-24.8,0" Click="компонентыToolStripMenuItem_Click"/>
                 <MenuItem Header="Виды пицц" HorizontalAlignment="Left" Width="152" Margin="0,0,-12.8,0" Click="изделияToolStripMenuItem_Click"/>
                 <MenuItem x:Name="Storage" Header="Склады" HorizontalAlignment="Left" Width="139.2" Click="складыToolStripMenuItem_Click"/>
+                <MenuItem Header="Сотрудники" HorizontalAlignment="Left" Width="139.2" Click="сотрудникиToolStripMenuItem_Click"/>
             </MenuItem>
             <MenuItem x:Name="PutOnStroage" Header="Пополнить склад" Click="пополнитьСкладToolStripMenuItem_Click"/>
             <MenuItem Header="Отчеты" Width="134">
@@ -26,6 +27,7 @@
                 <MenuItem Header="Загруженность складов" Margin="0,0,-25.8,0" HorizontalAlignment="Left" Width="229" Click="загруженностьСкладовToolStripMenuItem_Click"/>
                 <MenuItem Header="Заказы клиентов" HorizontalAlignment="Left" Width="180" Click="заказыКлиентовToolStripMenuItem_Click"/>
             </MenuItem>
+            <MenuItem Header="Запуск работ" Click="запускРаботToolStripMenuItem_Click"/>
         </Menu>
 
     </Grid>

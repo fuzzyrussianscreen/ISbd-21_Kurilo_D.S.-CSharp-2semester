@@ -130,6 +130,10 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="UIAutomationProvider" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -155,6 +159,12 @@
     </Compile>
     <Compile Include="WindowIngredients.xaml.cs">
       <DependentUpon>WindowIngredients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowPerformer.xaml.cs">
+      <DependentUpon>WindowPerformer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowPerformers.xaml.cs">
+      <DependentUpon>WindowPerformers.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowPizza.xaml.cs">
       <DependentUpon>WindowPizza.xaml</DependentUpon>
@@ -217,6 +227,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowPerformer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowPerformers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowPizza.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -276,11 +294,16 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\TIMCYR.TTF" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PizzeriaModel\PizzeriaModel.csproj">
       <Project>{EAD4BAD8-2062-4544-A301-5ABB323F88BC}</Project>
       <Name>PizzeriaModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PizzeriaRestApi\PizzeriaRestApi.csproj">
+      <Project>{e834d8c9-7daa-4826-9b90-b69e77e48956}</Project>
+      <Name>PizzeriaRestApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\PizzeriaServiceDAL\PizzeriaServiceDAL.csproj">
       <Project>{e29ad7aa-e804-4f28-820f-5f727d9757de}</Project>

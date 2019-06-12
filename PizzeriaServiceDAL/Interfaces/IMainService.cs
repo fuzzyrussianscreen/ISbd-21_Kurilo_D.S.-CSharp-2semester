@@ -11,6 +11,7 @@ namespace PizzeriaServiceDAL.Interfaces
     public interface IMainService
     {
         List<IndentViewModel> GetList();
+        List<IndentViewModel> GetFreeIndents();
         void CreateIndent(IndentBindingModel model);
         void TakeOrderInWork(IndentBindingModel model);
         void FinishOrder(IndentBindingModel model);
